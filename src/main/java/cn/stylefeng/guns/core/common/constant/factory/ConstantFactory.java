@@ -17,6 +17,7 @@ package cn.stylefeng.guns.core.common.constant.factory;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.guns.core.enums.PlaceApplyStatusEnum;
 import cn.stylefeng.guns.core.common.constant.cache.Cache;
 import cn.stylefeng.guns.core.common.constant.cache.CacheKey;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
@@ -345,6 +346,20 @@ public class ConstantFactory implements IConstantFactory {
             parentDeptIds.add(Integer.valueOf(StrUtil.removeSuffix(StrUtil.removePrefix(s, "["), "]")));
         }
         return parentDeptIds;
+    }
+
+    /*
+        获取快递点申请状态
+     */
+    @Override
+    public String getPlaceApplyStatusName(Integer status) {
+        PlaceApplyStatusEnum[] values = PlaceApplyStatusEnum.values();
+        for (PlaceApplyStatusEnum k : values) {
+            if (status.equals(k.getStatus())){
+                return k.getDesc();
+            }
+        }
+        return null;
     }
 
 

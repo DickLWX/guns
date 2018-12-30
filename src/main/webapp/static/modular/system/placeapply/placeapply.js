@@ -15,15 +15,15 @@ Placeapply.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
             /*{title: '主键Id', field: 'id', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '申请人', field: 'userid', visible: true, align: 'center', valign: 'middle'},
+            {title: '申请人', field: 'userName', visible: true, align: 'center', valign: 'middle'},
             {title: '快递点地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
             {title: '快递点描述', field: 'description', visible: true, align: 'center', valign: 'middle'},
             {title: '手机号', field: 'mobile', visible: true, align: 'center', valign: 'middle'},
             {title: '申请说明', field: 'introduction', visible: true, align: 'center', valign: 'middle'},
             {title: '申请时间', field: 'createdate', visible: true, align: 'center', valign: 'middle'},
-            {title: '处理人', field: 'adminid', visible: true, align: 'center', valign: 'middle'},
+            {title: '处理人', field: 'adminName', visible: true, align: 'center', valign: 'middle'},
             {title: '审核时间', field: 'reviewdate', visible: true, align: 'center', valign: 'middle'},
-            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle'}
+            {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'}
             /*{title: '删除标记0：未删除1：删除', field: 'deleteflag', visible: true, align: 'center', valign: 'middle'}*/
     ];
 };
@@ -91,11 +91,46 @@ Placeapply.delete = function () {
 };
 
 /**
+ * 通过快递点申请
+ */
+Placeapply.pass = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/placeapply/check", function (data) {
+            Feng.success("审核成功");
+            Placeapply.table.refresh();
+        }, function (data) {
+            Feng.error("审核失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("placeapplyId",this.seItem.id);
+        ajax.set("status",2);
+        ajax.start();
+    }
+};
+
+/**
+ * 拒绝快递点申请
+ */
+Placeapply.refuse = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/placeapply/check", function (data) {
+            Feng.success("审核成功");
+            Placeapply.table.refresh();
+        }, function (data) {
+            Feng.error("审核失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("placeapplyId",this.seItem.id);
+        ajax.set("status",1);
+        ajax.start();
+    }
+};
+
+/**
  * 查询快递点申请列表
  */
 Placeapply.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['address'] = $("#address").val();
+    queryData['status'] = $("#status").val();
     Placeapply.table.refresh({query: queryData});
 };
 

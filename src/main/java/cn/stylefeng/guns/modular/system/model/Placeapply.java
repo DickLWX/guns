@@ -58,7 +58,7 @@ public class Placeapply extends Model<Placeapply> {
      */
     private Date reviewdate;
     /**
-     * 状态0:未通过 1：通过
+     * 状态1:未通过 2：通过
      */
     private Integer status;
     /**

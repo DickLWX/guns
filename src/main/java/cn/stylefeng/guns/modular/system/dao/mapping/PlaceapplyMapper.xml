@@ -22,4 +22,17 @@
         id, userid, address, description, mobile, introduction, createdate, adminid, reviewdate, status, deleteflag
     </sql>
 
+    <select id="selectPlaceApply" resultType="map">
+        select
+        <include refid="Base_Column_List" />
+        from sys_placeapply
+        where deleteflag = 0
+        <if test="address != null and address != ''">
+            and address like CONCAT('%',#{address},'%')
+        </if>
+        <if test="status != null and status != '' and status != 3">
+            and status = #{status}
+        </if>
+    </select>
+
 </mapper>

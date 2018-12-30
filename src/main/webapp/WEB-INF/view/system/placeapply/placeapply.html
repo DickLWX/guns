@@ -10,8 +10,16 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-3">
-                                <#NameCon id="condition" name="名称" />
+                                <#NameCon id="address" name="快递点地址" />
                             </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="status" name="状态" >
+                                <option value="3">全部</option>
+                                <option value="0">待审核</option>
+                                <option value="1">未通过</option>
+                                <option value="2">通过</option>
+                            </#SelectCon>
+                        </div>
                             <div class="col-sm-3">
                                 <#button name="搜索" icon="fa-search" clickFun="Placeapply.search()"/>
                             </div>
@@ -21,10 +29,13 @@
                                 <#button name="添加" icon="fa-plus" clickFun="Placeapply.openAddPlaceapply()"/>
                             @}
                             @if(shiro.hasPermission("/placeapply/update")){
-                                <#button name="修改" icon="fa-edit" clickFun="Placeapply.openPlaceapplyDetail()" space="true"/>
+                                <#button name="通过" icon="fa-edit" clickFun="Placeapply.pass()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/placeapply/refuse")){
+                            <#button name="拒绝" icon="fa-edit" clickFun="Placeapply.refuse()" space="true"/>
                             @}
                             @if(shiro.hasPermission("/placeapply/delete")){
-                                <#button name="删除" icon="fa-remove" clickFun="Placeapply.delete()" space="true"/>
+                            <#button name="删除" icon="fa-remove" clickFun="Placeapply.delete()" space="true"/>
                             @}
                         </div>
                         <#table id="PlaceapplyTable"/>

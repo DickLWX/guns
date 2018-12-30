@@ -128,4 +128,8 @@ public interface IConstantFactory {
      */
     List<Integer> getParentDeptIds(Integer deptid);
 
+    /*
+        获取快递点申请状态
+     */
+    String getPlaceApplyStatusName(Integer status);
 }

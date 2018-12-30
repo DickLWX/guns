@@ -19,3 +19,7 @@ star作者的两个项目，Guns（https://gitee.com/stylefeng/guns）和Roese�
 
   [1]: https://gitee.com/uploads/images/2018/0128/181022_1da2a72a_551203.jpeg
   [2]: https://gitee.com/uploads/images/2018/0128/181547_c8ba0119_551203.png
+  
+  搜索条件的通配符过滤
+  分页实现
+  查询userId等操作时候的缓存处理

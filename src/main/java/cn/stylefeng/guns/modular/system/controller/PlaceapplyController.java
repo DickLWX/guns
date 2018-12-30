@@ -1,5 +1,7 @@
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.modular.system.warpper.PlaceApplyWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import cn.stylefeng.guns.modular.system.model.Placeapply;
 import cn.stylefeng.guns.modular.system.service.IPlaceapplyService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 快递点申请控制器
@@ -61,9 +64,9 @@ public class PlaceapplyController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
-        List<Placeapply> result = placeapplyService.selectList(null);
-        return result;
+    public Object list(@RequestParam(required = false) String address, @RequestParam(required = false) Integer status) {
+        List<Map<String, Object>> result = placeapplyService.selectPlaceApply(address, status);
+        return new PlaceApplyWarpper(result).wrap();
     }
 
     /**
@@ -103,5 +106,16 @@ public class PlaceapplyController extends BaseController {
     @ResponseBody
     public Object detail(@PathVariable("placeapplyId") Integer placeapplyId) {
         return placeapplyService.selectById(placeapplyId);
+    }
+
+    /**
+     * 快递点申请通过
+     */
+    @RequestMapping(value = "/check")
+    @ResponseBody
+    public Object passApply(@RequestParam("placeapplyId")Integer placeapplyId, @RequestParam("status")Integer status) {
+        Integer adminId = ShiroKit.getUser().getId();
+        placeapplyService.passPlaceApply(placeapplyId, adminId, status);
+        return SUCCESS_TIP;
     }
 }
