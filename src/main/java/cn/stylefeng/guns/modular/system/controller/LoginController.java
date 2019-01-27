@@ -15,6 +15,11 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.convert.Convert;
+import cn.stylefeng.guns.core.enums.DeptEnum;
+import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import cn.stylefeng.guns.core.enums.RoleEnum;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.exception.InvalidKaptchaException;
 import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.log.LogManager;
@@ -23,12 +28,16 @@ import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.core.util.KaptchaUtil;
+import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.guns.modular.system.service.IMenuService;
 import cn.stylefeng.guns.modular.system.service.IUserService;
+import cn.stylefeng.guns.modular.system.transfer.UserDto;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.google.code.kaptcha.Constants;
+import com.google.common.base.Objects;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +46,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
 import java.util.List;
 
 import static cn.stylefeng.roses.core.util.HttpContext.getIp;
@@ -96,6 +106,47 @@ public class LoginController extends BaseController {
     }
 
     /**
+     * 跳转到注册页面
+     */
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register() {
+        return "/register.html";
+    }
+
+    /**
+     * 用户注册
+     * @return
+     */
+    @RequestMapping("/registerUser")
+    public String add() {
+        UserDto user = new UserDto();
+        String account = super.getPara("username").trim();
+        String password = super.getPara("password").trim();
+        String repassword = super.getPara("repassword").trim();
+        if (!Objects.equal(password, repassword)){
+            System.out.println("两次密码输入不一致");
+        }
+        // 判断账号是否重复
+        User theUser = userService.getByAccount(user.getAccount());
+        if (theUser != null) {
+            throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
+        }
+
+        // 完善账号信息
+        user.setAccount(account);
+        user.setName(account);
+        user.setSalt(ShiroKit.getRandomSalt(5));
+        user.setPassword(ShiroKit.md5(password, user.getSalt()));
+        user.setStatus(ManagerStatus.OK.getCode());
+        user.setCreatetime(new Date());
+        user.setRoleid(Convert.toStr(RoleEnum.CLIENT.getCode()));
+        user.setDeptid(DeptEnum.CLIENT.getCode());
+
+        this.userService.insert(UserFactory.createUser(user));
+        return REDIRECT + "/login";
+    }
+
+    /**
      * 点击登录执行的动作
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -145,5 +196,10 @@ public class LoginController extends BaseController {
         ShiroKit.getSubject().logout();
         deleteAllCookie();
         return REDIRECT + "/login";
+    }
+
+    @RequestMapping("/register")
+    public String placeapplyAdd() {
+        return "register.html";
     }
 }

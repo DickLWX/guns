@@ -27,12 +27,15 @@
         <h3>欢迎使用 Guns</h3>
         <br/>
         <h4 style="color: red;">${tips!}</h4>
-        <form class="m-t" role="form" action="${ctxPath}/login" method="post">
+        <form class="m-t" role="form" action="${ctxPath}/registerUser" method="post">
             <div class="form-group">
                 <input type="text" name="username" class="form-control" placeholder="用户名" required="">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="密码" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" name="repassword" class="form-control" placeholder="再次输入密码" required="">
             </div>
             @if(kaptcha.getKaptchaOnOff() == true){
             <div class="form-group" style="float: left;">
@@ -44,16 +47,8 @@
                 </div>
             </div>
             @}
-            <div class="form-group" style="float: left;">
-                <div class="checkbox" style="text-align: left">
-                    <label>
-                        <input type="checkbox" name="remember" style="margin-top: 2px;">记住我
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <button type="register" class="btn btn-primary block full-width m-b">注 册</button>
         </form>
-        <button type="register" id="register" class="btn btn-primary block full-width m-b " onclick="location.href='/register'" >注 册</button>
     </div>
 </div>
 

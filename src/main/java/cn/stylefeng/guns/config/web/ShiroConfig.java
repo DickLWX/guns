@@ -153,6 +153,7 @@ public class ShiroConfig {
          */
         shiroFilter.setUnauthorizedUrl("/global/error");
 
+
         /**
          * 覆盖默认的user拦截器(默认拦截器解决不了ajax请求 session超时的问题,若有更好的办法请及时反馈作者)
          */
@@ -178,6 +179,9 @@ public class ShiroConfig {
         hashMap.put("/static/**", "anon");
         hashMap.put("/gunsApi/**", "anon");
         hashMap.put("/login", "anon");
+        hashMap.put("/register", "anon");
+        hashMap.put("/registerUser", "anon");
+        hashMap.put("/register.html", "anon");
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");

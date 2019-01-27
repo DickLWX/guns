@@ -103,7 +103,7 @@ public class UserMgrController extends BaseController {
     }
 
     /**
-     * 跳转到编辑管理员页面
+     * 跳转到页面
      */
     @Permission
     @RequestMapping("/user_edit/{userId}")
