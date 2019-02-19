@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.modular.system.dao.UserMapper;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.guns.modular.system.service.IUserService;
@@ -59,5 +60,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getByAccount(String account) {
         return this.baseMapper.getByAccount(account);
+    }
+
+    @Override
+    public void insertUserScore(Integer userId) {
+        this.baseMapper.insertUserScore(userId, Const.SCORE, Const.SCORE);
     }
 }

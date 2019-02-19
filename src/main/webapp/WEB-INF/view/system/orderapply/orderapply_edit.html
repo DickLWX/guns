@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="placeid" name="快递点id" value="${item.placeid}" underline="true"/>
+                            <#input id="userid" name="申请人id" value="${item.userid}" underline="true"/>
+                            <#input id="introduction" name="申请说明" value="${item.introduction}" underline="true"/>
+                            <#input id="mobile" name="手机号" value="${item.mobile}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="status" name="状态0：未通过1：通过" value="${item.status}" underline="true"/>
+                            <#input id="adminid" name="管理员id" value="${item.adminid}" underline="true"/>
+                            <#input id="createdate" name="创建时间" value="${item.createdate}" underline="true"/>
+                            <#input id="reviewdate" name="审核时间" value="${item.reviewdate}" underline="true"/>
+                            <#input id="deleteflag" name="删除标志0：未删除1：删除" value="${item.deleteflag}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderapplyInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderapplyInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/orderapply/orderapply_info.js"></script>
+@}

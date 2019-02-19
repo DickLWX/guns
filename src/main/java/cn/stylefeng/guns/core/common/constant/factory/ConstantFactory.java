@@ -52,6 +52,7 @@ public class ConstantFactory implements IConstantFactory {
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
     private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
     private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
+    private PlaceapplyMapper placeapplyMapper = SpringContextHolder.getBean(PlaceapplyMapper.class);
 
     public static IConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -360,6 +361,12 @@ public class ConstantFactory implements IConstantFactory {
             }
         }
         return null;
+    }
+
+    @Override
+    public String getPlaceAddress(Integer placeId) {
+        String address = placeapplyMapper.selectPlaceAddressById(placeId);
+        return address;
     }
 
 

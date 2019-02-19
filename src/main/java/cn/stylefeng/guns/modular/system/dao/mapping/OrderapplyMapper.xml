@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.OrderapplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Orderapply">
+        <id column="id" property="id" />
+        <result column="placeid" property="placeid" />
+        <result column="userid" property="userid" />
+        <result column="introduction" property="introduction" />
+        <result column="mobile" property="mobile" />
+        <result column="status" property="status" />
+        <result column="adminid" property="adminid" />
+        <result column="createdate" property="createdate" />
+        <result column="reviewdate" property="reviewdate" />
+        <result column="deleteflag" property="deleteflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, placeid, userid, introduction, mobile, status, adminid, createdate, reviewdate, deleteflag
+    </sql>
+    
+    <select id="selectOrderApply" resultType="map">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        from sys_orderapply
+        where placeid = #{id} and status = 0 and deleteflag = 0
+    </select>
+
+</mapper>

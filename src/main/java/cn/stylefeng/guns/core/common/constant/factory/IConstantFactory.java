@@ -132,4 +132,9 @@ public interface IConstantFactory {
         获取快递点申请状态
      */
     String getPlaceApplyStatusName(Integer status);
+
+    /**
+     * 根据快递点id获得快递点地址
+     */
+    String getPlaceAddress(Integer placeId);
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50615
 File Encoding         : 65001
 
-Date: 2018-11-04 22:44:01
+Date: 2019-01-30 20:49:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `code_dbinfo` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='数据库链接信息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='数据库链接信息';
 
 -- ----------------------------
 -- Records of code_dbinfo
@@ -76,10 +76,10 @@ CREATE TABLE `sys_dept` (
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES ('24', '1', '0', '[0],', '总公司', '总公司', '', null);
-INSERT INTO `sys_dept` VALUES ('25', '2', '24', '[0],[24],', '开发部', '开发部', '', null);
-INSERT INTO `sys_dept` VALUES ('26', '3', '24', '[0],[24],', '运营部', '运营部', '', null);
-INSERT INTO `sys_dept` VALUES ('27', '4', '24', '[0],[24],', '战略部', '战略部', '', null);
+INSERT INTO `sys_dept` VALUES ('24', '1', '0', '[0],', '超级管理员', '超级管理员', '', null);
+INSERT INTO `sys_dept` VALUES ('25', '2', '24', '[0],[24],', '普通用户', '普通用户', '', null);
+INSERT INTO `sys_dept` VALUES ('26', '3', '24', '[0],[24],', '接单人', '接单人', '', null);
+INSERT INTO `sys_dept` VALUES ('27', '4', '24', '[0],[24],', '快递点', '快递点', '', null);
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -93,7 +93,7 @@ CREATE TABLE `sys_dict` (
   `tips` varchar(255) DEFAULT NULL COMMENT '提示',
   `code` varchar(255) DEFAULT NULL COMMENT '值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典表';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -122,7 +122,7 @@ CREATE TABLE `sys_expense` (
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `processId` varchar(255) DEFAULT NULL COMMENT '流程定义id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='报销表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='报销表';
 
 -- ----------------------------
 -- Records of sys_expense
@@ -170,7 +170,7 @@ CREATE TABLE `sys_getorder` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_getplace`;
 CREATE TABLE `sys_getplace` (
-  `id` int(11) NOT NULL COMMENT '主键id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `placeid` int(11) DEFAULT NULL COMMENT '快递点id',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `status` int(5) DEFAULT '0' COMMENT '状态  0:未通过 1:通过',
@@ -194,7 +194,7 @@ CREATE TABLE `sys_login_log` (
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=221 DEFAULT CHARSET=utf8 COMMENT='登录记录';
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -203,6 +203,86 @@ INSERT INTO `sys_login_log` VALUES ('217', '登录失败日志', null, '2018-11-
 INSERT INTO `sys_login_log` VALUES ('218', '登录失败日志', null, '2018-11-04 15:19:56', '成功', '账号:admin,账号密码错误', '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES ('219', '登录日志', '1', '2018-11-04 15:22:16', '成功', null, '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES ('220', '登录日志', '1', '2018-11-04 16:16:09', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('221', '登录日志', '1', '2018-11-12 20:00:48', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('222', '退出日志', '1', '2018-11-12 20:16:18', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('223', '登录日志', '1', '2018-11-12 20:16:24', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('224', '登录日志', '1', '2018-11-12 20:18:05', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('225', '登录日志', '1', '2018-11-12 20:23:09', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('226', '登录日志', '1', '2018-11-12 20:27:32', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('227', '登录日志', '1', '2018-11-12 20:33:21', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('228', '登录日志', '1', '2018-11-12 21:15:50', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('229', '登录日志', '1', '2018-11-12 21:26:32', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('230', '登录日志', '1', '2018-11-18 09:43:30', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('231', '登录日志', '1', '2018-11-18 13:10:46', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('232', '登录日志', '1', '2018-11-18 13:13:03', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('233', '登录日志', '1', '2018-11-18 13:13:49', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('234', '登录日志', '1', '2018-11-18 13:14:14', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('235', '登录日志', '1', '2018-11-18 13:15:22', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('236', '登录日志', '1', '2018-11-18 13:17:48', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('237', '登录日志', '1', '2018-11-18 14:14:41', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('238', '登录日志', '1', '2018-11-18 14:37:27', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('239', '登录日志', '1', '2018-12-01 12:02:32', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('240', '登录日志', '1', '2018-12-01 12:59:40', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('241', '登录日志', '1', '2018-12-01 13:17:27', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('242', '登录日志', '1', '2018-12-01 13:19:12', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('243', '登录日志', '1', '2018-12-01 14:47:09', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('244', '登录日志', '1', '2018-12-01 14:55:00', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('245', '登录日志', '1', '2018-12-01 14:56:55', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('246', '登录日志', '1', '2018-12-01 15:05:13', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('247', '登录日志', '1', '2018-12-01 15:08:52', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('248', '登录日志', '1', '2018-12-01 15:11:40', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('249', '登录日志', '1', '2018-12-01 15:12:16', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('250', '登录日志', '1', '2018-12-01 22:45:27', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('251', '登录日志', '1', '2018-12-01 22:56:58', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('252', '登录失败日志', null, '2018-12-25 21:06:31', '成功', '账号:admin,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('253', '登录日志', '1', '2018-12-25 21:06:38', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('254', '登录日志', '1', '2018-12-28 20:57:36', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('255', '登录日志', '1', '2018-12-30 09:37:24', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('256', '登录日志', '1', '2018-12-30 09:39:19', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('257', '登录日志', '1', '2018-12-30 09:40:42', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('258', '退出日志', '1', '2018-12-30 10:31:22', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('259', '登录日志', '1', '2018-12-30 10:31:28', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('260', '登录日志', '1', '2018-12-30 14:41:28', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('261', '登录日志', '1', '2018-12-30 14:44:32', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('262', '登录日志', '1', '2018-12-30 14:50:13', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('263', '登录日志', '1', '2018-12-30 15:05:59', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('264', '退出日志', '1', '2018-12-30 15:08:37', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('265', '登录日志', '1', '2018-12-30 15:08:46', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('266', '退出日志', '1', '2018-12-30 15:10:29', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('267', '登录日志', '1', '2018-12-30 15:10:36', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('268', '登录失败日志', null, '2018-12-30 15:16:45', '成功', '账号:admin,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('269', '登录日志', '1', '2018-12-30 15:16:53', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('270', '退出日志', '1', '2018-12-30 15:22:23', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('271', '登录日志', '1', '2018-12-30 15:22:29', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('272', '登录日志', '1', '2018-12-30 15:22:58', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('273', '退出日志', '1', '2018-12-30 15:24:33', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('274', '登录日志', '1', '2018-12-30 15:24:38', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('275', '退出日志', '1', '2018-12-30 15:25:14', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('276', '登录日志', '1', '2018-12-30 15:25:19', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('277', '登录失败日志', null, '2018-12-31 09:26:08', '成功', '账号:admin,验证码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('278', '登录日志', '1', '2018-12-31 09:26:33', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('279', '登录失败日志', null, '2018-12-31 10:22:53', '成功', '账号:admin,验证码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('280', '登录日志', '1', '2018-12-31 10:23:37', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('281', '登录失败日志', null, '2019-01-03 21:37:56', '成功', '账号:prism,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('282', '登录失败日志', null, '2019-01-03 21:39:11', '成功', '账号:prism,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('283', '登录失败日志', null, '2019-01-03 21:39:58', '成功', '账号:prism,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('284', '登录失败日志', null, '2019-01-03 21:43:17', '成功', '账号:prism,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('285', '登录失败日志', null, '2019-01-03 21:43:31', '成功', '账号:qdsaD,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('286', '登录失败日志', null, '2019-01-21 09:54:19', '成功', '账号:admin,账号密码错误', '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('287', '登录日志', '1', '2019-01-21 09:54:26', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('288', '登录日志', '1', '2019-01-21 11:25:34', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('289', '登录日志', '49', '2019-01-21 11:29:41', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('290', '登录日志', '49', '2019-01-21 11:31:02', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('291', '登录日志', '1', '2019-01-21 11:35:12', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('292', '登录日志', '49', '2019-01-23 09:36:42', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('293', '退出日志', '49', '2019-01-23 09:38:26', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('294', '登录日志', '1', '2019-01-23 09:38:31', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('295', '退出日志', '1', '2019-01-23 09:42:26', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('296', '登录日志', '49', '2019-01-23 09:42:34', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('297', '登录日志', '49', '2019-01-23 09:44:04', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('298', '登录日志', '49', '2019-01-23 09:46:25', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('299', '登录日志', '1', '2019-01-23 09:47:32', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES ('300', '登录日志', '1', '2019-01-23 09:57:04', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -223,7 +303,7 @@ CREATE TABLE `sys_menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -283,6 +363,14 @@ INSERT INTO `sys_menu` VALUES ('164', 'role_list', 'role', '[0],[system],[role],
 INSERT INTO `sys_menu` VALUES ('165', 'to_assign_role', 'mgr', '[0],[system],[mgr],', '分配角色跳转', '', '/mgr/role_assign', '8', '3', '0', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('166', 'to_user_edit', 'mgr', '[0],[system],[mgr],', '编辑用户跳转', '', '/mgr/user_edit', '9', '3', '0', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('167', 'mgr_list', 'mgr', '[0],[system],[mgr],', '用户列表', '', '/mgr/list', '10', '3', '0', null, '1', null);
+INSERT INTO `sys_menu` VALUES ('168', 'placeapply', 'delivery', '[0],[delivery],', '快递点申请', '', '/placeapply', '10', '2', '1', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('169', 'placeapply_list', 'placeapply', '[0],[system],[placeapply],', '快递点申请列表', '', '/placeapply/list', '1', '3', '0', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('170', 'placeapply_add', 'placeapply', '[0],[system],[placeapply],', '快递点申请添加', '', '/placeapply/add', '2', '3', '0', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('171', 'placeapply_update', 'placeapply', '[0],[system],[placeapply],', '快递点申请通过', '', '/placeapply/update', '3', '3', '0', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('172', 'placeapply_delete', 'placeapply', '[0],[system],[placeapply],', '快递点申请删除', '', '/placeapply/delete', '4', '3', '0', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('173', 'placeapply_detail', 'placeapply', '[0],[system],[placeapply],', '快递点申请详情', '', '/placeapply/detail', '5', '3', '0', null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('174', 'placeapply_refuse', 'placeapply', '[0],[system],[placeapply],', '快递点申请拒绝', '', '/placeapply/refuse', '6', '3', '0', null, '1', null);
+INSERT INTO `sys_menu` VALUES ('175', 'delivery', '0', '[0],', '快递代拿', 'fa-user', '#', '5', '1', '1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -319,11 +407,46 @@ CREATE TABLE `sys_operation_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=554 DEFAULT CHARSET=utf8 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of sys_operation_log
 -- ----------------------------
+INSERT INTO `sys_operation_log` VALUES ('1', '业务日志', '修改角色', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'edit', '2018-11-12 21:18:44', '成功', '角色名称=普通用户;;;字段名称:角色名称,旧值:临时,新值:普通用户;;;字段名称:部门名称,旧值:接单人,新值:普通用户;;;字段名称:备注,旧值:temp,新值:client');
+INSERT INTO `sys_operation_log` VALUES ('2', '业务日志', '添加角色', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'add', '2018-11-12 21:19:57', '成功', '角色名称=接单人');
+INSERT INTO `sys_operation_log` VALUES ('3', '业务日志', '添加角色', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'add', '2018-11-12 21:20:30', '成功', '角色名称=快递点');
+INSERT INTO `sys_operation_log` VALUES ('4', '业务日志', '修改角色', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'edit', '2018-11-12 21:20:40', '成功', '角色名称=快递点;;;');
+INSERT INTO `sys_operation_log` VALUES ('5', '业务日志', '修改角色', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'edit', '2018-11-12 21:20:46', '成功', '角色名称=快递点;;;字段名称:角色的父级,旧值:--,新值:超级管理员');
+INSERT INTO `sys_operation_log` VALUES ('6', '业务日志', '菜单新增', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'add', '2018-11-12 21:24:06', '成功', '菜单名称=申请信息');
+INSERT INTO `sys_operation_log` VALUES ('7', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-11-12 21:25:55', '成功', '菜单名称=申请信息;;;字段名称:url地址,旧值:#,新值:/code');
+INSERT INTO `sys_operation_log` VALUES ('8', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-11-12 21:27:19', '成功', '菜单名称=代码生成;;;字段名称:null,旧值:1,新值:0');
+INSERT INTO `sys_operation_log` VALUES ('9', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-11-12 21:27:52', '成功', '菜单名称=代码生成;;;字段名称:null,旧值:0,新值:1');
+INSERT INTO `sys_operation_log` VALUES ('10', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-11-12 21:30:23', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,通知,代码生成,接口文档,申请信息');
+INSERT INTO `sys_operation_log` VALUES ('11', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-11-18 09:44:57', '成功', '菜单名称=申请信息;;;字段名称:url地址,旧值:/code,新值:#');
+INSERT INTO `sys_operation_log` VALUES ('12', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-11-18 09:59:21', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('13', '业务日志', '删除菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'remove', '2018-11-18 09:59:37', '成功', '菜单id=168');
+INSERT INTO `sys_operation_log` VALUES ('14', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-11-18 10:10:58', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,快递点申请,快递点申请列表,快递点申请添加,快递点申请更新,快递点申请删除,快递点申请详情,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('15', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2018-11-18 13:23:53', '成功', '账号=接单人,角色名称集合=接单人');
+INSERT INTO `sys_operation_log` VALUES ('16', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2018-11-18 13:24:06', '成功', '账号=快递点,角色名称集合=快递点');
+INSERT INTO `sys_operation_log` VALUES ('17', '异常日志', '', '1', null, null, '2018-11-18 13:27:02', '失败', 'cn.stylefeng.roses.kernel.model.exception.ServiceException: 不能修改超级管理员角色\r\n	at cn.stylefeng.guns.modular.system.controller.UserMgrController.setRole(UserMgrController.java:346)\r\n	at cn.stylefeng.guns.modular.system.controller.UserMgrControllerTTFastClassBySpringCGLIBTT7c4c2edf.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)\r\n	at cn.stylefeng.guns.core.interceptor.SessionHolderInterceptor.sessionKit(SessionHolderInterceptor.java:44)\r\n	at sun.reflect.GeneratedMethodAccessor105.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)\r\n	at cn.stylefeng.guns.core.aop.LogAop.recordSysLog(LogAop.java:60)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:174)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)\r\n	at cn.stylefeng.guns.core.aop.PermissionAop.doPermission(PermissionAop.java:72)\r\n	at sun.reflect.GeneratedMethodAccessor135.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:174)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)\r\n	at cn.stylefeng.guns.modular.system.controller.UserMgrControllerTTEnhancerBySpringCGLIBTT61556c05.setRole(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974)\r\n	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at cn.stylefeng.roses.core.xss.XssFilter.doFilter(XssFilter.java:31)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocolTConnectionHandler.process(AbstractProtocol.java:790)\r\n	at org.apache.tomcat.util.net.NioEndpointTSocketProcessor.doRun(NioEndpoint.java:1459)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:624)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:748)\r\n');
+INSERT INTO `sys_operation_log` VALUES ('18', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2018-11-18 13:31:55', '成功', '账号=接单人,角色名称集合=快递点');
+INSERT INTO `sys_operation_log` VALUES ('19', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2018-11-18 13:33:28', '成功', '账号=接单人,角色名称集合=接单人');
+INSERT INTO `sys_operation_log` VALUES ('20', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-12-30 10:28:17', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,快递点申请,快递点申请列表,快递点申请通过,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('21', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-12-30 10:30:56', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,快递点申请,快递点申请列表,快递点申请通过,快递点申请删除,快递点申请详情,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('22', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-12-30 10:38:08', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,快递点申请,快递点申请列表,快递点申请通过,快递点申请删除,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('23', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-12-30 15:08:31', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,快递点申请,快递点申请列表,快递点申请通过,快递点申请删除,快递点申请拒绝,通知,代码生成,接口文档');
+INSERT INTO `sys_operation_log` VALUES ('24', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-12-30 15:10:23', '成功', '菜单名称=快递点申请拒绝;;;字段名称:菜单编号,旧值:placeapply_refus,新值:placeapply_refuse;;;字段名称:url地址,旧值:/placeapply/refus,新值:/placeapply/refuse');
+INSERT INTO `sys_operation_log` VALUES ('25', '业务日志', '菜单新增', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'add', '2018-12-30 15:21:53', '成功', '菜单名称=快递代拿');
+INSERT INTO `sys_operation_log` VALUES ('26', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-12-30 15:22:20', '成功', '菜单名称=快递代拿;;;字段名称:菜单图标,旧值:,新值:fa-user');
+INSERT INTO `sys_operation_log` VALUES ('27', '业务日志', '修改菜单', '1', 'cn.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2018-12-30 15:24:06', '成功', '菜单名称=快递点申请;;;字段名称:菜单父编号,旧值:105,新值:175');
+INSERT INTO `sys_operation_log` VALUES ('28', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2018-12-30 15:25:11', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,角色管理,添加角色,修改角色,删除角色,配置权限,修改角色跳转,角色分配跳转,角色列表,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,通知,代码生成,接口文档,快递代拿,快递点申请,快递点申请列表,快递点申请通过,快递点申请删除,快递点申请详情,快递点申请拒绝');
+INSERT INTO `sys_operation_log` VALUES ('29', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2019-01-21 10:05:34', '成功', '账号=wenxuanli,角色名称集合=普通用户');
+INSERT INTO `sys_operation_log` VALUES ('30', '业务日志', '配置权限', '1', 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2019-01-21 11:30:34', '成功', '角色名称=普通用户,资源名称=快递代拿,快递点申请,快递点申请列表');
+INSERT INTO `sys_operation_log` VALUES ('31', '业务日志', '修改管理员', '49', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'edit', '2019-01-21 11:31:50', '成功', '账号=wenxuanli;;;字段名称:null,旧值:fb41c7c91a8a5551626e0016b11eed01,新值:');
+INSERT INTO `sys_operation_log` VALUES ('32', '业务日志', '修改管理员', '49', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'edit', '2019-01-21 11:32:07', '成功', '账号=wenxuanli;;;字段名称:null,旧值:fb41c7c91a8a5551626e0016b11eed01,新值:');
+INSERT INTO `sys_operation_log` VALUES ('33', '业务日志', '修改管理员', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'edit', '2019-01-21 11:37:33', '成功', '账号=admin;;;字段名称:null,旧值:ecfadcde9305f8891bcfe5a1e28c253e,新值:');
+INSERT INTO `sys_operation_log` VALUES ('34', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2019-01-21 11:40:04', '成功', '账号=快递点,角色名称集合=接单人');
+INSERT INTO `sys_operation_log` VALUES ('35', '业务日志', '分配角色', '1', 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2019-01-21 11:40:18', '成功', '账号=快递点,角色名称集合=快递点');
 
 -- ----------------------------
 -- Table structure for sys_order
@@ -409,14 +532,15 @@ CREATE TABLE `sys_placeapply` (
   `createdate` timestamp NULL DEFAULT NULL COMMENT '申请时间',
   `adminid` int(11) DEFAULT NULL COMMENT '管理员id',
   `reviewdate` timestamp NULL DEFAULT NULL COMMENT '审核时间',
-  `status` int(5) DEFAULT '0' COMMENT '状态0:未通过 1：通过',
+  `status` int(5) DEFAULT '0' COMMENT '状态0: 为审核 1:未通过 2：通过',
   `deleteflag` int(5) DEFAULT '0' COMMENT '删除标记0：未删除1：删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='快递点申请表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='快递点申请表';
 
 -- ----------------------------
 -- Records of sys_placeapply
 -- ----------------------------
+INSERT INTO `sys_placeapply` VALUES ('1', '46', '一食堂', '一食堂菜鸟驿站', '110', '一食堂菜鸟驿站', '2018-11-18 14:15:42', '1', '2018-12-30 15:17:09', '1', '0');
 
 -- ----------------------------
 -- Table structure for sys_relation
@@ -427,86 +551,76 @@ CREATE TABLE `sys_relation` (
   `menuid` bigint(11) DEFAULT NULL COMMENT '菜单id',
   `roleid` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3792 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=4266 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of sys_relation
 -- ----------------------------
-INSERT INTO `sys_relation` VALUES ('3377', '105', '5');
-INSERT INTO `sys_relation` VALUES ('3378', '106', '5');
-INSERT INTO `sys_relation` VALUES ('3379', '107', '5');
-INSERT INTO `sys_relation` VALUES ('3380', '108', '5');
-INSERT INTO `sys_relation` VALUES ('3381', '109', '5');
-INSERT INTO `sys_relation` VALUES ('3382', '110', '5');
-INSERT INTO `sys_relation` VALUES ('3383', '111', '5');
-INSERT INTO `sys_relation` VALUES ('3384', '112', '5');
-INSERT INTO `sys_relation` VALUES ('3385', '113', '5');
-INSERT INTO `sys_relation` VALUES ('3386', '114', '5');
-INSERT INTO `sys_relation` VALUES ('3387', '115', '5');
-INSERT INTO `sys_relation` VALUES ('3388', '116', '5');
-INSERT INTO `sys_relation` VALUES ('3389', '117', '5');
-INSERT INTO `sys_relation` VALUES ('3390', '118', '5');
-INSERT INTO `sys_relation` VALUES ('3391', '119', '5');
-INSERT INTO `sys_relation` VALUES ('3392', '120', '5');
-INSERT INTO `sys_relation` VALUES ('3393', '121', '5');
-INSERT INTO `sys_relation` VALUES ('3394', '122', '5');
-INSERT INTO `sys_relation` VALUES ('3395', '150', '5');
-INSERT INTO `sys_relation` VALUES ('3396', '151', '5');
-INSERT INTO `sys_relation` VALUES ('3737', '105', '1');
-INSERT INTO `sys_relation` VALUES ('3738', '106', '1');
-INSERT INTO `sys_relation` VALUES ('3739', '107', '1');
-INSERT INTO `sys_relation` VALUES ('3740', '108', '1');
-INSERT INTO `sys_relation` VALUES ('3741', '109', '1');
-INSERT INTO `sys_relation` VALUES ('3742', '110', '1');
-INSERT INTO `sys_relation` VALUES ('3743', '111', '1');
-INSERT INTO `sys_relation` VALUES ('3744', '112', '1');
-INSERT INTO `sys_relation` VALUES ('3745', '113', '1');
-INSERT INTO `sys_relation` VALUES ('3746', '165', '1');
-INSERT INTO `sys_relation` VALUES ('3747', '166', '1');
-INSERT INTO `sys_relation` VALUES ('3748', '167', '1');
-INSERT INTO `sys_relation` VALUES ('3749', '114', '1');
-INSERT INTO `sys_relation` VALUES ('3750', '115', '1');
-INSERT INTO `sys_relation` VALUES ('3751', '116', '1');
-INSERT INTO `sys_relation` VALUES ('3752', '117', '1');
-INSERT INTO `sys_relation` VALUES ('3753', '118', '1');
-INSERT INTO `sys_relation` VALUES ('3754', '162', '1');
-INSERT INTO `sys_relation` VALUES ('3755', '163', '1');
-INSERT INTO `sys_relation` VALUES ('3756', '164', '1');
-INSERT INTO `sys_relation` VALUES ('3757', '119', '1');
-INSERT INTO `sys_relation` VALUES ('3758', '120', '1');
-INSERT INTO `sys_relation` VALUES ('3759', '121', '1');
-INSERT INTO `sys_relation` VALUES ('3760', '122', '1');
-INSERT INTO `sys_relation` VALUES ('3761', '150', '1');
-INSERT INTO `sys_relation` VALUES ('3762', '151', '1');
-INSERT INTO `sys_relation` VALUES ('3763', '128', '1');
-INSERT INTO `sys_relation` VALUES ('3764', '134', '1');
-INSERT INTO `sys_relation` VALUES ('3765', '158', '1');
-INSERT INTO `sys_relation` VALUES ('3766', '159', '1');
-INSERT INTO `sys_relation` VALUES ('3767', '130', '1');
-INSERT INTO `sys_relation` VALUES ('3768', '131', '1');
-INSERT INTO `sys_relation` VALUES ('3769', '135', '1');
-INSERT INTO `sys_relation` VALUES ('3770', '136', '1');
-INSERT INTO `sys_relation` VALUES ('3771', '137', '1');
-INSERT INTO `sys_relation` VALUES ('3772', '152', '1');
-INSERT INTO `sys_relation` VALUES ('3773', '153', '1');
-INSERT INTO `sys_relation` VALUES ('3774', '154', '1');
-INSERT INTO `sys_relation` VALUES ('3775', '132', '1');
-INSERT INTO `sys_relation` VALUES ('3776', '138', '1');
-INSERT INTO `sys_relation` VALUES ('3777', '139', '1');
-INSERT INTO `sys_relation` VALUES ('3778', '140', '1');
-INSERT INTO `sys_relation` VALUES ('3779', '155', '1');
-INSERT INTO `sys_relation` VALUES ('3780', '156', '1');
-INSERT INTO `sys_relation` VALUES ('3781', '157', '1');
-INSERT INTO `sys_relation` VALUES ('3782', '133', '1');
-INSERT INTO `sys_relation` VALUES ('3783', '160', '1');
-INSERT INTO `sys_relation` VALUES ('3784', '161', '1');
-INSERT INTO `sys_relation` VALUES ('3785', '141', '1');
-INSERT INTO `sys_relation` VALUES ('3786', '142', '1');
-INSERT INTO `sys_relation` VALUES ('3787', '143', '1');
-INSERT INTO `sys_relation` VALUES ('3788', '144', '1');
-INSERT INTO `sys_relation` VALUES ('3789', '145', '1');
-INSERT INTO `sys_relation` VALUES ('3790', '148', '1');
-INSERT INTO `sys_relation` VALUES ('3791', '149', '1');
+INSERT INTO `sys_relation` VALUES ('4201', '105', '1');
+INSERT INTO `sys_relation` VALUES ('4202', '106', '1');
+INSERT INTO `sys_relation` VALUES ('4203', '107', '1');
+INSERT INTO `sys_relation` VALUES ('4204', '108', '1');
+INSERT INTO `sys_relation` VALUES ('4205', '109', '1');
+INSERT INTO `sys_relation` VALUES ('4206', '110', '1');
+INSERT INTO `sys_relation` VALUES ('4207', '111', '1');
+INSERT INTO `sys_relation` VALUES ('4208', '112', '1');
+INSERT INTO `sys_relation` VALUES ('4209', '113', '1');
+INSERT INTO `sys_relation` VALUES ('4210', '165', '1');
+INSERT INTO `sys_relation` VALUES ('4211', '166', '1');
+INSERT INTO `sys_relation` VALUES ('4212', '167', '1');
+INSERT INTO `sys_relation` VALUES ('4213', '114', '1');
+INSERT INTO `sys_relation` VALUES ('4214', '115', '1');
+INSERT INTO `sys_relation` VALUES ('4215', '116', '1');
+INSERT INTO `sys_relation` VALUES ('4216', '117', '1');
+INSERT INTO `sys_relation` VALUES ('4217', '118', '1');
+INSERT INTO `sys_relation` VALUES ('4218', '162', '1');
+INSERT INTO `sys_relation` VALUES ('4219', '163', '1');
+INSERT INTO `sys_relation` VALUES ('4220', '164', '1');
+INSERT INTO `sys_relation` VALUES ('4221', '119', '1');
+INSERT INTO `sys_relation` VALUES ('4222', '120', '1');
+INSERT INTO `sys_relation` VALUES ('4223', '121', '1');
+INSERT INTO `sys_relation` VALUES ('4224', '122', '1');
+INSERT INTO `sys_relation` VALUES ('4225', '150', '1');
+INSERT INTO `sys_relation` VALUES ('4226', '151', '1');
+INSERT INTO `sys_relation` VALUES ('4227', '128', '1');
+INSERT INTO `sys_relation` VALUES ('4228', '134', '1');
+INSERT INTO `sys_relation` VALUES ('4229', '158', '1');
+INSERT INTO `sys_relation` VALUES ('4230', '159', '1');
+INSERT INTO `sys_relation` VALUES ('4231', '130', '1');
+INSERT INTO `sys_relation` VALUES ('4232', '131', '1');
+INSERT INTO `sys_relation` VALUES ('4233', '135', '1');
+INSERT INTO `sys_relation` VALUES ('4234', '136', '1');
+INSERT INTO `sys_relation` VALUES ('4235', '137', '1');
+INSERT INTO `sys_relation` VALUES ('4236', '152', '1');
+INSERT INTO `sys_relation` VALUES ('4237', '153', '1');
+INSERT INTO `sys_relation` VALUES ('4238', '154', '1');
+INSERT INTO `sys_relation` VALUES ('4239', '132', '1');
+INSERT INTO `sys_relation` VALUES ('4240', '138', '1');
+INSERT INTO `sys_relation` VALUES ('4241', '139', '1');
+INSERT INTO `sys_relation` VALUES ('4242', '140', '1');
+INSERT INTO `sys_relation` VALUES ('4243', '155', '1');
+INSERT INTO `sys_relation` VALUES ('4244', '156', '1');
+INSERT INTO `sys_relation` VALUES ('4245', '157', '1');
+INSERT INTO `sys_relation` VALUES ('4246', '133', '1');
+INSERT INTO `sys_relation` VALUES ('4247', '160', '1');
+INSERT INTO `sys_relation` VALUES ('4248', '161', '1');
+INSERT INTO `sys_relation` VALUES ('4249', '141', '1');
+INSERT INTO `sys_relation` VALUES ('4250', '142', '1');
+INSERT INTO `sys_relation` VALUES ('4251', '143', '1');
+INSERT INTO `sys_relation` VALUES ('4252', '144', '1');
+INSERT INTO `sys_relation` VALUES ('4253', '145', '1');
+INSERT INTO `sys_relation` VALUES ('4254', '148', '1');
+INSERT INTO `sys_relation` VALUES ('4255', '149', '1');
+INSERT INTO `sys_relation` VALUES ('4256', '175', '1');
+INSERT INTO `sys_relation` VALUES ('4257', '168', '1');
+INSERT INTO `sys_relation` VALUES ('4258', '169', '1');
+INSERT INTO `sys_relation` VALUES ('4259', '171', '1');
+INSERT INTO `sys_relation` VALUES ('4260', '172', '1');
+INSERT INTO `sys_relation` VALUES ('4261', '173', '1');
+INSERT INTO `sys_relation` VALUES ('4262', '174', '1');
+INSERT INTO `sys_relation` VALUES ('4263', '175', '5');
+INSERT INTO `sys_relation` VALUES ('4264', '168', '5');
+INSERT INTO `sys_relation` VALUES ('4265', '169', '5');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -521,13 +635,15 @@ CREATE TABLE `sys_role` (
   `tips` varchar(255) DEFAULT NULL COMMENT '提示',
   `version` int(11) DEFAULT NULL COMMENT '保留字段(暂时没用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '1', '0', '超级管理员', '24', 'administrator', '1');
-INSERT INTO `sys_role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
+INSERT INTO `sys_role` VALUES ('5', '2', '1', '普通用户', '25', 'client', null);
+INSERT INTO `sys_role` VALUES ('6', '3', '1', '接单人', '26', 'getOrder', null);
+INSERT INTO `sys_role` VALUES ('7', '4', '1', '快递点', '27', 'place', null);
 
 -- ----------------------------
 -- Table structure for sys_statistics
@@ -569,15 +685,15 @@ CREATE TABLE `sys_user` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `version` int(11) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
-INSERT INTO `sys_user` VALUES ('44', null, 'test', '45abb7879f6a8268f1ef600e6038ac73', 'ssts3', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '5', '26', '3', '2017-05-16 20:33:37', null);
-INSERT INTO `sys_user` VALUES ('45', null, 'boss', '71887a5ad666a18f709e1d4e693d5a35', '1f7bf', '老板', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:02', null);
-INSERT INTO `sys_user` VALUES ('46', null, 'manager', 'b53cac62e7175637d4beb3b16b2f7915', 'j3cs9', '经理', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:24', null);
+INSERT INTO `sys_user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com1', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');
+INSERT INTO `sys_user` VALUES ('45', 'girl.gif', '接单人', '71887a5ad666a18f709e1d4e693d5a35', '1f7bf', '接单人', '2017-12-04 00:00:00', '1', '', '', '6', '26', '1', '2017-12-04 22:24:02', null);
+INSERT INTO `sys_user` VALUES ('46', 'girl.gif', '快递点', 'b53cac62e7175637d4beb3b16b2f7915', 'j3cs9', '快递点', '2017-12-04 00:00:00', '1', '', '', '7', '27', '1', '2017-12-04 22:24:24', null);
+INSERT INTO `sys_user` VALUES ('49', null, 'wenxuanli', 'fb41c7c91a8a5551626e0016b11eed01', '8mym1', 'wenxuanli', '2019-01-21 00:00:00', '1', '1076252166@qq.com', '15058123291', '5', '25', '1', '2019-01-03 21:51:34', null);
 
 -- ----------------------------
 -- Table structure for sys_userscore
@@ -603,7 +719,7 @@ CREATE TABLE `test` (
   `aaa` int(11) NOT NULL AUTO_INCREMENT,
   `bbb` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`aaa`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of test

@@ -8,15 +8,14 @@ import cn.stylefeng.roses.core.util.ToolUtil;
 import java.util.List;
 import java.util.Map;
 
-public class PlaceApplyWarpper extends BaseControllerWrapper {
+public class PlaceApplyWrapper extends BaseControllerWrapper {
 
-    public PlaceApplyWarpper(List<Map<String, Object>> muti){
+    public PlaceApplyWrapper(List<Map<String, Object>> muti){
         super(muti);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        System.out.println(map.get("userid"));
         map.put("userName", ConstantFactory.me().getUserNameById((Integer) map.get("userid")));
         if (ToolUtil.isEmpty(map.get("adminid")) || map.get("adminid").equals(MagicUtil.ZERO)){
             map.put("adminName",MagicUtil.NO_VALUE_STRING);

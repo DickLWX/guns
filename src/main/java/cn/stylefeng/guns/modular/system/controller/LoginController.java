@@ -143,6 +143,9 @@ public class LoginController extends BaseController {
         user.setDeptid(DeptEnum.CLIENT.getCode());
 
         this.userService.insert(UserFactory.createUser(user));
+        // 初始化积分
+        theUser = this.userService.getByAccount(account);
+        this.userService.insertUserScore(theUser.getId());
         return REDIRECT + "/login";
     }
 

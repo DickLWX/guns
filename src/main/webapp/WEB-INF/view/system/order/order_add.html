@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="placename" name="快递点" underline="true"/>
+                            <#input id="mobile" name="手机号" underline="true"/>
+                            <#input id="score" name="悬赏积分" underline="true"/>
+                            <#select id="size" name="货物尺寸" underline="true">
+                                <option value="小">小</option>
+                                <option value="中">中</option>
+                                <option value="大">大</option>
+                             </#select>
+                            <#input id="name" name="收件人名字"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="address" name="收货地址" underline="true"/>
+                            <#input id="weight" name="货物重量（单位kg）" underline="true"/>
+                            <#input id="reputation" name="所需信誉积分" underline="true"/>
+                            <#input id="limitdate" name="最迟期限" underline="true" type="text"/>
+                            <#input id="grade" name="信誉分" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/order/order_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#limitdate'
+    });
+</script>
+@}

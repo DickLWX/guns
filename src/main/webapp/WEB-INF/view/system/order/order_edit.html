@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="订单表主键Id" value="${item.id}" underline="true"/>
+                            <#input id="userid" name="发单人id" value="${item.userid}" underline="true"/>
+                            <#input id="placeid" name="快递点Id" value="${item.placeid}" underline="true"/>
+                            <#input id="getid" name="接单人id" value="${item.getid}" underline="true"/>
+                            <#input id="mobile" name="手机号" value="${item.mobile}" underline="true"/>
+                            <#input id="address" name="送达地址" value="${item.address}" underline="true"/>
+                            <#input id="score" name="悬赏积分" value="${item.score}" underline="true"/>
+                            <#input id="size" name="货物尺寸" value="${item.size}" underline="true"/>
+                            <#input id="name" name="收件人名字" value="${item.name}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="weight" name="货物重量" value="${item.weight}" underline="true"/>
+                            <#input id="reputation" name="所需信誉积分" value="${item.reputation}" underline="true"/>
+                            <#input id="createdate" name="创建时间" value="${item.createdate}" underline="true"/>
+                            <#input id="limitdate" name="最迟期限" value="${item.limitdate}" underline="true"/>
+                            <#input id="finishdate" name="订单完成时间" value="${item.finishdate}" underline="true"/>
+                            <#input id="grade" name="信誉分" value="${item.grade}" underline="true"/>
+                            <#input id="content" name="评论" value="${item.content}" underline="true"/>
+                            <#input id="status" name="订单状态0：未被接单 1：已接单 2：完成 3：超时" value="${item.status}" underline="true"/>
+                            <#input id="deleteflag" name="删除标记0:未删除 1:已删除" value="${item.deleteflag}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/order/order_info.js"></script>
+@}

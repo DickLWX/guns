@@ -1,7 +1,8 @@
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.guns.core.enums.PlaceApplyStatusEnum;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
-import cn.stylefeng.guns.modular.system.warpper.PlaceApplyWarpper;
+import cn.stylefeng.guns.modular.system.warpper.PlaceApplyWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,14 @@ public class PlaceapplyController extends BaseController {
     }
 
     /**
+     * 跳转到快递点信息页
+     */
+    @RequestMapping("/place")
+    public String placeindex() {
+        return PREFIX + "place.html";
+    }
+
+    /**
      * 跳转到添加快递点申请
      */
     @RequestMapping("/placeapply_add")
@@ -65,8 +74,17 @@ public class PlaceapplyController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String address, @RequestParam(required = false) Integer status) {
-        List<Map<String, Object>> result = placeapplyService.selectPlaceApply(address, status);
-        return new PlaceApplyWarpper(result).wrap();
+        List<Map<String, Object>> result = placeapplyService.selectPlaceApply(address, PlaceApplyStatusEnum.WAIT.getStatus());
+        return new PlaceApplyWrapper(result).wrap();
+    }
+
+    /**
+     * 获取快递点列表
+     */
+    @RequestMapping(value = "/place/list")
+    @ResponseBody
+    public Object placeList(@RequestParam(required = false) String address, @RequestParam(required = false) Integer status) {
+        return placeapplyService.selectAllPlace();
     }
 
     /**

@@ -48,4 +48,9 @@ public interface Const {
      */
     String API_MENU_NAME = "接口文档";
 
+    /**
+     * 用户注册默认积分
+     */
+    Integer SCORE = 100;
+
 }

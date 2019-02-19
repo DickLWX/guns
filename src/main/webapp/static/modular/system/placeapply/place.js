@@ -14,17 +14,8 @@ var Placeapply = {
 Placeapply.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            /*{title: '主键Id', field: 'id', visible: true, align: 'center', valign: 'middle'},*/
-            {title: '申请人', field: 'userName', visible: true, align: 'center', valign: 'middle'},
             {title: '快递点地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
-            {title: '快递点描述', field: 'description', visible: true, align: 'center', valign: 'middle'},
-            {title: '手机号', field: 'mobile', visible: true, align: 'center', valign: 'middle'},
-            {title: '申请说明', field: 'introduction', visible: true, align: 'center', valign: 'middle'},
-            {title: '申请时间', field: 'createdate', visible: true, align: 'center', valign: 'middle'},
-            {title: '处理人', field: 'adminName', visible: true, align: 'center', valign: 'middle'},
-            {title: '审核时间', field: 'reviewdate', visible: true, align: 'center', valign: 'middle'},
-            {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'}
-            /*{title: '删除标记0：未删除1：删除', field: 'deleteflag', visible: true, align: 'center', valign: 'middle'}*/
+            {title: '快递点描述', field: 'description', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 
@@ -135,7 +126,7 @@ Placeapply.search = function () {
 
 $(function () {
     var defaultColunms = Placeapply.initColumn();
-    var table = new BSTable(Placeapply.id, "/placeapply/list", defaultColunms);
+    var table = new BSTable(Placeapply.id, "/placeapply/place/list", defaultColunms);
     table.setPaginationType("client");
     Placeapply.table = table.init();
 });

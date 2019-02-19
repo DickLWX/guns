@@ -21,6 +21,14 @@ public interface IPlaceapplyService extends IService<Placeapply> {
      */
     List<Map<String, Object>> selectPlaceApply( String address, Integer status);
 
+    /*
+        通过快递点申请
+     */
     void passPlaceApply(Integer placeApplyId, Integer adminId, Integer status);
 
+    Integer findPlaceIdByAddress(String address);
+
+    List<Map<String,String>> selectAllPlace();
+
+    Integer selectPlaceIdByUserId(Integer userId);
 }

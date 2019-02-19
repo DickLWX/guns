@@ -18,6 +18,7 @@ package cn.stylefeng.guns.modular.system.service;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.service.IService;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -57,5 +58,11 @@ public interface IUserService extends IService<User> {
      * 通过账号获取用户
      */
     User getByAccount(@Param("account") String account);
+
+    /**
+     * 插入用户积分表
+     * @param userId
+     */
+    void insertUserScore(Integer userId);
 
 }

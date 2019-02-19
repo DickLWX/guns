@@ -18,6 +18,7 @@ package cn.stylefeng.guns.modular.system.dao;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -57,4 +58,13 @@ public interface UserMapper extends BaseMapper<User> {
      * 通过账号获取用户
      */
     User getByAccount(@Param("account") String account);
+
+    /**
+     * 插入用户积分表
+     * @param userId
+     * @param score
+     * @param tempscore
+     */
+    @Insert("insert into sys_userscore(userid, score,tempscore) values(#{userId}, #{score}, #{tempscore})")
+    void insertUserScore(@Param("userId")Integer userId, @Param("score") Integer score,@Param("tempscore") Integer tempscore);
 }
