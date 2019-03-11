@@ -19,4 +19,8 @@ public interface OrderapplyMapper extends BaseMapper<Orderapply> {
 
     List<Map<String, Object>> selectOrderApply(@Param("id")Integer id);
 
+    void passOrderApply(@Param("orderApplyId") Integer orderApplyId, @Param("adminId") Integer adminId, @Param("status") Integer status);
+
+    List<Map<String, Object>> selectGetOrderList(@Param("id")Integer id);
+
 }

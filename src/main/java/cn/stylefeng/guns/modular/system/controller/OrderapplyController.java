@@ -58,6 +58,31 @@ public class OrderapplyController extends BaseController {
     }
 
     /**
+     * 跳转到接单人页面
+     */
+    @RequestMapping("/getorder")
+    public String getOrder() {
+        return PREFIX + "getorder.html";
+    }
+
+    /**
+     * 获取接单人页面列表
+     */
+    @RequestMapping(value = "/getorder/list")
+    @ResponseBody
+    public Object getOrderlist(String condition) {
+        ShiroUser user = ShiroKit.getUser();
+        Integer userId = user.getId();
+        Integer placeId = placeapplyService.selectPlaceIdByUserId(userId);
+        if (Objects.equal(placeId, null)){
+            return null;
+        }
+        List<Map<String, Object>> map = orderapplyService.selectGetOrderList(placeId);
+        //return new OrderApplyWrapper(map).wrap();
+        return null;
+    }
+
+    /**
      * 跳转到修改接单人申请
      */
     @RequestMapping("/orderapply_update/{orderapplyId}")
@@ -133,5 +158,16 @@ public class OrderapplyController extends BaseController {
     @ResponseBody
     public Object detail(@PathVariable("orderapplyId") Integer orderapplyId) {
         return orderapplyService.selectById(orderapplyId);
+    }
+
+    /**
+     * 申请成为接单人通过或者拒绝
+     */
+    @RequestMapping(value = "/check")
+    @ResponseBody
+    public Object passApply(@RequestParam("orderApplyId")Integer orderApplyId, @RequestParam("status")Integer status) {
+        Integer adminId = ShiroKit.getUser().getId();
+        orderapplyService.passOrderApply(orderApplyId,adminId, status);
+        return SUCCESS_TIP;
     }
 }

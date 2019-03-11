@@ -28,4 +28,15 @@
         where placeid = #{id} and status = 0 and deleteflag = 0
     </select>
 
+    <update id="passOrderApply">
+      UPDATE sys_orderapply set status = #{status},adminid = #{adminId}, reviewdate = now() where id = #{orderApplyId}
+    </update>
+    
+    <select id="selectGetOrderList" resultType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from sys_orderapply
+        where placeid = #{id} and status = 2 and deleteflag = 0
+    </select>
+
 </mapper>

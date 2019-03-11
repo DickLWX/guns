@@ -1,9 +1,11 @@
 package cn.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.guns.core.enums.PlaceApplyStatusEnum;
 import cn.stylefeng.guns.modular.system.model.Orderapply;
 import cn.stylefeng.guns.modular.system.dao.OrderapplyMapper;
 import cn.stylefeng.guns.modular.system.service.IOrderapplyService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.google.common.base.Objects;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +25,32 @@ public class OrderapplyServiceImpl extends ServiceImpl<OrderapplyMapper, Orderap
     @Override
     public List<Map<String, Object>> selectOrderApply(Integer id) {
         return this.baseMapper.selectOrderApply(id);
+    }
+
+    /*
+        快递点通过获拒绝接单人申请
+     */
+    @Override
+    public void passOrderApply(Integer orderApplyId, Integer adminId, Integer status) {
+        // 如果成功，需要修改用户类型为接单人
+        if (Objects.equal(status, 2)){
+            //通过
+            this.baseMapper.passOrderApply(orderApplyId, adminId, status);
+            // 更改用户角色
+        }
+        if (Objects.equal(status, 1)){
+            this.baseMapper.passOrderApply(orderApplyId, adminId, status);
+            //拒绝
+        }
+    }
+
+    /**
+     * 获得指定快递点已经拥有的接单人
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> selectGetOrderList(Integer id) {
+        return this.baseMapper.selectGetOrderList(id);
     }
 }

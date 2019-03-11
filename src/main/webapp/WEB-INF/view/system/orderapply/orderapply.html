@@ -27,7 +27,10 @@
                                 <#button name="删除" icon="fa-remove" clickFun="Orderapply.delete()" space="true"/>
                             @}
                             @if(shiro.hasPermission("/orderapply/pass")){
-                            <#button name="通过" icon="fa-remove" clickFun="Orderapply.delete()" space="true"/>
+                            <#button name="通过" icon="fa-remove" clickFun="Orderapply.pass()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/orderapply/pass")){
+                            <#button name="拒绝" icon="fa-remove" clickFun="Orderapply.refuse()" space="true"/>
                             @}
                         </div>
                         <#table id="OrderapplyTable"/>

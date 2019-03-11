@@ -79,7 +79,7 @@ Orderapply.pass = function () {
             Feng.error("审核失败!" + data.responseJSON.message + "!");
         });
         ajax.set("orderApplyId",this.seItem.id);
-        ajax.set("status",1);
+        ajax.set("status",2);
         ajax.start();
     }
 };
@@ -96,7 +96,7 @@ Orderapply.refuse = function () {
             Feng.error("审核失败!" + data.responseJSON.message + "!");
         });
         ajax.set("orderApplyId",this.seItem.id);
-        ajax.set("status",2);
+        ajax.set("status",1);
         ajax.start();
     }
 };
