@@ -16,7 +16,7 @@ Placeapply.initColumn = function () {
         {field: 'selectItem', radio: true},
             {title: '申请人', field: 'name', visible: true, align: 'center', valign: 'middle'},
             {title: '通过人', field: 'passname', visible: true, align: 'center', valign: 'middle'},
-            {title: '申请时间', field: 'passtime', visible: true, align: 'center', valign: 'middle'}
+            {title: '通过时间', field: 'reviewdate', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 
@@ -43,9 +43,27 @@ Placeapply.search = function () {
     Placeapply.table.refresh({query: queryData});
 };
 
+/**
+ * 拒绝快递点申请
+ */
+Placeapply.refuse = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/orderapply/check", function (data) {
+            Feng.success("审核成功");
+            Placeapply.table.refresh();
+        }, function (data) {
+            Feng.error("审核失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("orderApplyId",this.seItem.id);
+        ajax.set("status",1);
+        ajax.start();
+    }
+};
+
+
 $(function () {
     var defaultColunms = Placeapply.initColumn();
-    var table = new BSTable(Placeapply.id, "/placeapply/place/list", defaultColunms);
+    var table = new BSTable(Placeapply.id, "/orderapply/getorder/list", defaultColunms);
     table.setPaginationType("client");
     Placeapply.table = table.init();
 });

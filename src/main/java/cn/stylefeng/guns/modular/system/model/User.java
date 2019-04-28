@@ -85,6 +85,8 @@ public class User extends Model<User> {
     private Integer version;
 
 
+
+
     public Integer getId() {
         return id;
     }
@@ -204,6 +206,7 @@ public class User extends Model<User> {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
 
     @Override
     protected Serializable pkVal() {

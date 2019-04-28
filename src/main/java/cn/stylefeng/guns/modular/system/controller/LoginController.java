@@ -121,15 +121,18 @@ public class LoginController extends BaseController {
     public String add() {
         UserDto user = new UserDto();
         String account = super.getPara("username").trim();
+        user.setAccount(account);
         String password = super.getPara("password").trim();
         String repassword = super.getPara("repassword").trim();
         if (!Objects.equal(password, repassword)){
             System.out.println("两次密码输入不一致");
+            return REDIRECT + "/login";
         }
         // 判断账号是否重复
         User theUser = userService.getByAccount(user.getAccount());
         if (theUser != null) {
-            throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
+            //throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
+            return REDIRECT + "/login";
         }
 
         // 完善账号信息

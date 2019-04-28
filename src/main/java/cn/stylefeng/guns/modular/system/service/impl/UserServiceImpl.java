@@ -66,4 +66,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public void insertUserScore(Integer userId) {
         this.baseMapper.insertUserScore(userId, Const.SCORE, Const.SCORE);
     }
+
+    @Override
+    public Integer selectGradeByUserId(Integer userId) {
+        return this.baseMapper.selectGradeByUserId(userId);
+    }
+
+    @Override
+    public Integer selectOrderNumByUserId(Integer userId) {
+        return this.baseMapper.selectOrderNumByUserId(userId);
+    }
+
+    @Override
+    public Integer selectScoreByUserId(Integer userId) {
+        return this.baseMapper.selectScoreByUserId(userId);
+    }
+
+    @Override
+    public Integer selectTempScoreByUserId(Integer userId) {
+        return this.baseMapper.selectTempScoreByUserId(userId);
+    }
 }

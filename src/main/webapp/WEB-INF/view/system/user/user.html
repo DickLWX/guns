@@ -8,16 +8,16 @@
 			<div class="ibox-content">
 				<div class="row row-lg">
 					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-lg-2 col-sm-3">
+
+						<!--	<div class="col-lg-2 col-sm-3">
 								<div class="panel panel-default">
 									<div class="panel-heading">组织机构</div>
 									<div class="panel-body dept-tree">
 										<ul id="deptTree" class="ztree"></ul>
 									</div>
 								</div>
-							</div>
-							<div class="col-lg-10 col-sm-9">
+							</div>-->
+							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-lg-10 col-sm-9">
 										<div class="row">
@@ -60,13 +60,10 @@
 									@if(shiro.hasPermission("/mgr/unfreeze")){
 									<#button name="解除冻结" icon="fa-check-circle" clickFun="MgrUser.unfreeze()" space="true"/>
 									@}
-									@if(shiro.hasPermission("/mgr/setRole")){
-									<#button name="角色分配" icon="fa-user-secret" clickFun="MgrUser.roleAssign()" space="true"/>
-									@}
 								</div>
 								<#table id="managerTable"/>
 							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>

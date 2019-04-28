@@ -137,4 +137,8 @@ public interface IConstantFactory {
      * 根据快递点id获得快递点地址
      */
     String getPlaceAddress(Integer placeId);
+
+    String getOrderStatus(Integer status);
+
+    String getPlaceApplyList(Integer status);
 }

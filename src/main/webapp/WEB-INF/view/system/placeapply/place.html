@@ -8,6 +8,11 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
+                        <div class="hidden-xs" id="PlaceapplyTableToolbar" role="group">
+                            @if(shiro.hasPermission("/placeapply/add")){
+                            <#button name="快递点申请" icon="fa-plus" clickFun="Placeapply.openAddPlaceapply()"/>
+                            @}
+                        </div>
                         <#table id="PlaceapplyTable"/>
                     </div>
                 </div>

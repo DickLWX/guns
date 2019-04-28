@@ -35,6 +35,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 常量的生产工厂
@@ -367,6 +368,30 @@ public class ConstantFactory implements IConstantFactory {
     public String getPlaceAddress(Integer placeId) {
         String address = placeapplyMapper.selectPlaceAddressById(placeId);
         return address;
+    }
+
+    @Override
+    public String getOrderStatus(Integer status) {
+        if (Objects.equals(status, 0))
+            return "未接单";
+        if (Objects.equals(status, 1))
+            return "已接单";
+        if (Objects.equals(status, 2))
+            return "完成";
+        if (Objects.equals(status, 3))
+            return "超时";
+        return null;
+    }
+
+    @Override
+    public String getPlaceApplyList(Integer status) {
+        if (Objects.equals(status,0))
+            return "审核中";
+        if (Objects.equals(status,1))
+            return "拒绝";
+        if (Objects.equals(status,2))
+            return "通过";
+        return null;
     }
 
 

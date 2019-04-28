@@ -38,12 +38,14 @@ public class PlaceapplyServiceImpl extends ServiceImpl<PlaceapplyMapper, Placeap
     @Transactional
     public void passPlaceApply(Integer placeApplyId, Integer adminId, Integer status) {
         this.baseMapper.passPlaceApply(placeApplyId, adminId, status);// 改变申请状态
+        Map<String, String> map = this.baseMapper.selectPlaceAppyById(placeApplyId);
         if (Objects.equal(status, PlaceApplyStatusEnum.PASS.getStatus())){
-            Map<String, String> map = this.baseMapper.selectPlaceAppyById(placeApplyId);
             this.baseMapper.insertPlace(Convert.toInt(map.get("userid")),map.get("address"),map.get("description"));
+            this.baseMapper.bePlace(Convert.toInt(map.get("userid")),7);
         } // 通过则进入快递点信息表；
+          //该用户角色为快递点
         if (Objects.equal(status, PlaceApplyStatusEnum.UNPASS.getDesc())){
-
+            this.baseMapper.bePlace(Convert.toInt(map.get("userid")),5);
         } // 拒绝如果该快递点原来已通过，则将原来通过的detele字段置为1表示已删除
          // 拒绝则直接拒绝，什么事都不做（最新）
     }
@@ -61,6 +63,11 @@ public class PlaceapplyServiceImpl extends ServiceImpl<PlaceapplyMapper, Placeap
     @Override
     public Integer selectPlaceIdByUserId(Integer userId) {
         return this.baseMapper.selectPlaceIdByUserId(userId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getPlaceApplyList(Integer userId) {
+        return this.baseMapper.getPlaceApplyList(userId);
     }
 
 

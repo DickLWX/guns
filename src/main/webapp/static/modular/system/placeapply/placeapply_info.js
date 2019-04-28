@@ -68,9 +68,15 @@ PlaceapplyInfoDlg.addSubmit = function() {
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/placeapply/add", function(data){
-        Feng.success("添加成功!");
-        window.parent.Placeapply.table.refresh();
-        PlaceapplyInfoDlg.close();
+        if(data.code == 500){
+          Feng.error(data.message)
+        }else {
+            Feng.success("添加成功!");
+            window.parent.Placeapply.table.refresh();
+            PlaceapplyInfoDlg.close();
+        }
+        /*window.parent.Placeapply.table.refresh();
+        PlaceapplyInfoDlg.close();*/
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });

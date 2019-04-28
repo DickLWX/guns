@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>接单数申请管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="hidden-xs" id="ApplyordernumTableToolbar" role="group">
+                            @if(shiro.hasPermission("/applyordernum/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Applyordernum.openAddApplyordernum()"/>
+                            @}
+                            @if(shiro.hasPermission("/applyordernum/update")){
+                            <#button name="通过" icon="fa-edit" clickFun="Applyordernum.pass()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/applyordernum/update")){
+                            <#button name="拒绝" icon="fa-edit" clickFun="Applyordernum.refuse()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ApplyordernumTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/applyordernum/applyordernum.js"></script>
+@}

@@ -75,10 +75,14 @@ OrderInfoDlg.addSubmit = function() {
     this.collectData();
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/order/add", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/order/add", function(data) {
+        if (data.code == 500) {
+            Feng.error(data.message);
+        } else {
         Feng.success("添加成功!");
         window.parent.Order.table.refresh();
         OrderInfoDlg.close();
+    }
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });

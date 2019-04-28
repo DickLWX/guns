@@ -1,9 +1,13 @@
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.util.ReUtil;
 import cn.stylefeng.guns.core.enums.PlaceApplyStatusEnum;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.warpper.PlaceApplyListWrap;
 import cn.stylefeng.guns.modular.system.warpper.PlaceApplyWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Placeapply;
 import cn.stylefeng.guns.modular.system.service.IPlaceapplyService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 快递点申请控制器
@@ -49,6 +56,12 @@ public class PlaceapplyController extends BaseController {
         return PREFIX + "place.html";
     }
 
+
+    @RequestMapping("/placeapplylist")
+    public String placeapplylist() {
+        return PREFIX + "placeapplylist.html";
+    }
+
     /**
      * 跳转到添加快递点申请
      */
@@ -78,6 +91,14 @@ public class PlaceapplyController extends BaseController {
         return new PlaceApplyWrapper(result).wrap();
     }
 
+    @RequestMapping(value = "/placeapplylistl")
+    @ResponseBody
+    public Object placeApplyListl() {
+        ShiroUser user = ShiroKit.getUser();
+        List<Map<String, Object>> result = placeapplyService.getPlaceApplyList(user.getId());
+        return new PlaceApplyListWrap(result).wrap();
+    }
+
     /**
      * 获取快递点列表
      */
@@ -92,7 +113,17 @@ public class PlaceapplyController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Placeapply placeapply) {
+    public Object add(Placeapply placeapply) throws Exception {
+        ShiroUser user = ShiroKit.getUser();
+        Integer userId = user.getId();
+        placeapply.setUserid(userId);
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-9])|(147))\\d{8}$");
+        Matcher m = p.matcher(placeapply.getMobile());
+        if (!m.matches()){
+            //throw new Exception("手机号输出错误");
+            return new ErrorResponseData("手机号输入错误");
+        }
+        placeapply.setCreatedate(new Date());
         placeapplyService.insert(placeapply);
         return SUCCESS_TIP;
     }
@@ -135,5 +166,12 @@ public class PlaceapplyController extends BaseController {
         Integer adminId = ShiroKit.getUser().getId();
         placeapplyService.passPlaceApply(placeapplyId, adminId, status);
         return SUCCESS_TIP;
+    }
+
+    public static void main(String[] args) {
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-9])|(147))\\d{8}$");
+        Matcher m = p.matcher("15058123291");
+        System.out.println(m.matches());
+
     }
 }

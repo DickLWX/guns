@@ -90,6 +90,26 @@ Order.delete = function () {
 };
 
 /**
+ * 接单
+ */
+Order.getOrder = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/order/getOrder", function (data) {
+            if (data.code == 500) {
+                Feng.error(data.message);
+            } else {
+            Feng.success("接单成功!");
+            Order.table.refresh();
+        }
+        }, function (data) {
+            Feng.error("接单失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("orderId",this.seItem.id);
+        ajax.start();
+    }
+};
+
+/**
  * 查询订单列表
  */
 Order.search = function () {

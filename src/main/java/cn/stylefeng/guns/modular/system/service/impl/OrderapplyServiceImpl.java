@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.google.common.base.Objects;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +32,15 @@ public class OrderapplyServiceImpl extends ServiceImpl<OrderapplyMapper, Orderap
         快递点通过获拒绝接单人申请
      */
     @Override
+    @Transient
     public void passOrderApply(Integer orderApplyId, Integer adminId, Integer status) {
         // 如果成功，需要修改用户类型为接单人
         if (Objects.equal(status, 2)){
             //通过
             this.baseMapper.passOrderApply(orderApplyId, adminId, status);
+            Integer userId = this.baseMapper.getUserIdById(orderApplyId);
+            this.baseMapper.beGetOrder(userId,6);
+            this.baseMapper.initGetOrder(userId); // 更新接单人表
             // 更改用户角色
         }
         if (Objects.equal(status, 1)){
@@ -52,5 +57,10 @@ public class OrderapplyServiceImpl extends ServiceImpl<OrderapplyMapper, Orderap
     @Override
     public List<Map<String, Object>> selectGetOrderList(Integer id) {
         return this.baseMapper.selectGetOrderList(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectOrderAoolyListByUserId(Integer userId) {
+        return this.baseMapper.selectOrderAoolyListByUserId(userId);
     }
 }

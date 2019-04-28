@@ -20,6 +20,7 @@ import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -67,4 +68,16 @@ public interface UserMapper extends BaseMapper<User> {
      */
     @Insert("insert into sys_userscore(userid, score,tempscore) values(#{userId}, #{score}, #{tempscore})")
     void insertUserScore(@Param("userId")Integer userId, @Param("score") Integer score,@Param("tempscore") Integer tempscore);
+
+    @Select("select grade from sys_getorder where userid = #{userId}")
+    Integer selectGradeByUserId(@Param("userId")Integer userId);
+
+    @Select("select ordernum from sys_getorder where userid = #{userId}")
+    Integer selectOrderNumByUserId(@Param("userId")Integer userId);
+
+    @Select("select score from sys_userscore where userid = #{userId}")
+    Integer selectScoreByUserId(@Param("userId")Integer userId);
+
+    @Select("select tempscore from sys_userscore where userid = #{userId}")
+    Integer selectTempScoreByUserId(@Param("userId")Integer userId);
 }

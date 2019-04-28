@@ -20,6 +20,7 @@ import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.service.IService;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -64,5 +65,17 @@ public interface IUserService extends IService<User> {
      * @param userId
      */
     void insertUserScore(Integer userId);
+
+
+    Integer selectGradeByUserId(@Param("userId")Integer userId);
+
+
+    Integer selectOrderNumByUserId(@Param("userId")Integer userId);
+
+
+    Integer selectScoreByUserId(@Param("userId")Integer userId);
+
+
+    Integer selectTempScoreByUserId(@Param("userId")Integer userId);
 
 }

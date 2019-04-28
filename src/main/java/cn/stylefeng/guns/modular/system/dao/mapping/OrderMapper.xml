@@ -33,7 +33,11 @@
         SELECT
         <include refid="Base_Column_List"/>
         from sys_order
-        where deleteflag = 0
+        where deleteflag = 0 and status = 0
+    </select>
+
+    <select id="selectPlaceId" resultType="int">
+        select placeid from sys_order where id = #{orderId};
     </select>
 
 </mapper>

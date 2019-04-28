@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.system.service;
 
 import cn.stylefeng.guns.modular.system.model.Placeapply;
 import com.baomidou.mybatisplus.service.IService;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 import java.util.Map;
@@ -31,4 +32,6 @@ public interface IPlaceapplyService extends IService<Placeapply> {
     List<Map<String,String>> selectAllPlace();
 
     Integer selectPlaceIdByUserId(Integer userId);
+
+    List<Map<String,Object>> getPlaceApplyList(Integer userId);
 }

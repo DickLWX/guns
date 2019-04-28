@@ -71,4 +71,10 @@ public interface PlaceapplyMapper extends BaseMapper<Placeapply> {
 
     @Select("select id from sys_place where userid = #{userId} and deleteflag = 0")
     Integer selectPlaceIdByUserId(@Param("userId")Integer userId);
+
+    @Select("select * from sys_placeapply where userid = #{userId} and deleteflag = 0")
+    List<Map<String,Object>> getPlaceApplyList(@Param("userId")Integer userId);
+
+    @Update("update sys_user set roleid = #{roleId} where id = #{userId}")
+    void bePlace(@Param("userId")Integer userId,@Param("roleId")Integer roleId);
 }

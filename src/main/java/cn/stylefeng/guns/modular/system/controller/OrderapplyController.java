@@ -4,8 +4,11 @@ import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.system.service.IPlaceapplyService;
 import cn.stylefeng.guns.modular.system.transfer.OrderApplyAddDto;
+import cn.stylefeng.guns.modular.system.warpper.GetOrderWrapper;
+import cn.stylefeng.guns.modular.system.warpper.OrderApplyListWraper;
 import cn.stylefeng.guns.modular.system.warpper.OrderApplyWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.google.common.base.Objects;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,8 @@ import cn.stylefeng.guns.modular.system.service.IOrderapplyService;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 接单人申请控制器
@@ -65,6 +70,11 @@ public class OrderapplyController extends BaseController {
         return PREFIX + "getorder.html";
     }
 
+    @RequestMapping("/orderapplytolist")
+    public String orderApplyToList() {
+        return PREFIX + "orderapplylist.html";
+    }
+
     /**
      * 获取接单人页面列表
      */
@@ -78,8 +88,16 @@ public class OrderapplyController extends BaseController {
             return null;
         }
         List<Map<String, Object>> map = orderapplyService.selectGetOrderList(placeId);
-        //return new OrderApplyWrapper(map).wrap();
-        return null;
+        return new GetOrderWrapper(map).wrap();
+    }
+
+    @RequestMapping(value = "/orderapplylist")
+    @ResponseBody
+    public Object orderApplyList() {
+        ShiroUser user = ShiroKit.getUser();
+        Integer userId = user.getId();
+        List<Map<String, Object>> result = orderapplyService.selectOrderAoolyListByUserId(userId);
+        return new OrderApplyListWraper(result).wrap();
     }
 
     /**
@@ -115,6 +133,12 @@ public class OrderapplyController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(OrderApplyAddDto dto) {
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-9])|(147))\\d{8}$");
+        Matcher m = p.matcher(dto.getMobile());
+        if (!m.matches()){
+            //throw new Exception("手机号输出错误");
+            return new ErrorResponseData("手机号输入错误");
+        }
         Orderapply orderapply = new Orderapply();
         BeanUtils.copyProperties(dto,orderapply);
         ShiroUser user = ShiroKit.getUser();
@@ -126,6 +150,8 @@ public class OrderapplyController extends BaseController {
         if (!Objects.equal(placeId, null)){
             orderapply.setPlaceid(placeId);
             orderapplyService.insert(orderapply);
+        }else{
+            return new ErrorResponseData("快递点不存在");
         }
 
         return SUCCESS_TIP;

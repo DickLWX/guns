@@ -38,6 +38,14 @@
                                                     value="${user.birthday}"/>
 
                                             <#input id="phone" name="电话" value="${user.phone}"/>
+
+                                            <#input id="account" name="积分" underline="true" value="${user.score}" disabled="disabled" />
+
+                                            <#input id="account" name="可用积分" underline="true" value="${user.tempScore}" disabled="disabled" />
+
+                                            <#input id="account" name="信誉值" underline="true" value="${user.grade}" disabled="disabled" />
+
+                                            <#input id="account" name="可接单数" underline="true" value="${user.orderNum}" disabled="disabled" />
                                         </div>
                                     </div>
                                 </div>
