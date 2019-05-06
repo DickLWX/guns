@@ -19,8 +19,9 @@ Placeapply.initColumn = function () {
             {title: '快递点', field: 'placename', visible: true, align: 'center', valign: 'middle'},
             {title: '送达地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
             {title: '积分', field: 'score', visible: true, align: 'center', valign: 'middle'},
+            {title: '保证积分', field: 'reputation', visible: true, align: 'center', valign: 'middle'},
             {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle'},
-            {title: '评论', field: 'content', visible: true, align: 'center', valign: 'middle'},
+            {title: '评价', field: 'content', visible: true, align: 'center', valign: 'middle'},
             {title: '完成时间', field: 'finishdate', visible: true, align: 'center', valign: 'middle'}
     ];
 };
@@ -61,6 +62,23 @@ Placeapply.refuse = function () {
         });
         ajax.set("orderApplyId",this.seItem.id);
         ajax.set("status",1);
+        ajax.start();
+    }
+};
+
+Placeapply.cancel = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/order/cancel", function (data) {
+            if (data.code == 500) {
+                Feng.error(data.message());
+            } else {
+                Feng.success("取消成功");
+                Placeapply.table.refresh();
+            }
+        }, function (data) {
+            Feng.error("取消失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("orderId", this.seItem.id);
         ajax.start();
     }
 };

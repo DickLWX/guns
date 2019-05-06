@@ -77,4 +77,7 @@ public interface PlaceapplyMapper extends BaseMapper<Placeapply> {
 
     @Update("update sys_user set roleid = #{roleId} where id = #{userId}")
     void bePlace(@Param("userId")Integer userId,@Param("roleId")Integer roleId);
+
+    @Select("select count(1) from sys_place where address = #{address}")
+    Integer countPlaceAddress(@Param("address")String address);
 }

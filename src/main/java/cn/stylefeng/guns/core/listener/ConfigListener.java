@@ -15,9 +15,12 @@
  */
 package cn.stylefeng.guns.core.listener;
 
+import cn.stylefeng.guns.core.util.SensitiveWordUtil;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,12 @@ public class ConfigListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent evt) {
         ServletContext sc = evt.getServletContext();
+
+        try {
+            SensitiveWordUtil.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //项目发布,当前运行环境的绝对路径
         conf.put("realPath", sc.getRealPath("/").replaceFirst("/", ""));

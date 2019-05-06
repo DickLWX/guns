@@ -20,6 +20,8 @@ import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.plugins.Page;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -51,5 +53,6 @@ public class NoticeWrapper extends BaseControllerWrapper {
     protected void wrapTheMap(Map<String, Object> map) {
         Integer creater = (Integer) map.get("creater");
         map.put("createrName", ConstantFactory.me().getUserNameById(creater));
+        map.put("noticeContent",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format((Date)map.get("createtime")) +"  " + (String)map.get("content"));
     }
 }

@@ -8,8 +8,9 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
-                        <div class="hidden-xs" id="DeptTableToolbar" role="group">
-                            <#button name="确定收货" icon="fa-plus" clickFun="Placeapply.openDeptDetail()" space="true"/>
+                        <div class="hidden-xs" id="PlaceapplyTableToolbar" role="group">
+                            <#button name="确认收货" icon="fa-plus" clickFun="Placeapply.openDeptDetail()"/>
+                            <#button name="取消订单" icon="fa-plus" clickFun="Placeapply.cancel()"/>
                         </div>
                         <#table id="GetOrderTable"/>
                     </div>
@@ -20,3 +21,5 @@
 </div>
 <script src="${ctxPath}/static/modular/system/order/publishorder.js"></script>
 @}
+
+

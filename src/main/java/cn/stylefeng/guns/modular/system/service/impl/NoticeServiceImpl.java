@@ -39,4 +39,9 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     public List<Map<String, Object>> list(String condition) {
         return this.baseMapper.list(condition);
     }
+
+    @Override
+    public void insertNotice(String title, String content, Integer aim) {
+        this.baseMapper.insertNotice(title,content,aim);
+    }
 }

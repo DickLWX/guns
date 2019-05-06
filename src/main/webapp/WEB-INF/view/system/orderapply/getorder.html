@@ -10,7 +10,7 @@
                     <div class="col-sm-12">
                         <div class="hidden-xs" id="OrderapplyTableToolbar" role="group">
                             @if(shiro.hasPermission("/orderapply/getorder")){
-                            <#button name="拒绝" icon="fa-remove" clickFun="Placeapply.refuse()" space="true"/>
+                            <#button name="取消资格" icon="fa-remove" clickFun="Placeapply.refuse()" space="true"/>
                             @}
                         </div>
                         <#table id="GetOrderTable"/>

@@ -21,15 +21,15 @@ public interface IOrderService extends IService<Order> {
 
         Integer selectReputation(Integer orderId);
 
-        int selectScore(Integer orderId);
+        Integer selectScore(Integer orderId);
 
-        int selectPlaceId(Integer orderId);
+        Integer selectPlaceId(Integer orderId);
 
-        int selectTempScore(Integer userId);
+        Integer selectTempScore(Integer userId);
 
-        int selectGrade(Integer userId);
+        Integer selectGrade(Integer userId);
 
-        int isHasGetOrder(Integer userId,Integer placeId);
+        Integer isHasGetOrder(Integer userId,Integer placeId);
 
         void getOrder(Integer userId, Integer orderId);
 
@@ -56,4 +56,9 @@ public interface IOrderService extends IService<Order> {
         Integer selectUserFlag(Integer userId);
 
         void updateGetOrderInfo(Integer userId,Integer orderNum, Integer grade);
+
+        Integer selectOrderUserIdById(Integer orderId);
+
+        void deleteOrder(Integer orderId);
+
 }

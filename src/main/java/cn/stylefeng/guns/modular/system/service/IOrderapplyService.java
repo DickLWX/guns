@@ -26,5 +26,5 @@ public interface IOrderapplyService extends IService<Orderapply> {
 
     List<Map<String, Object>> selectOrderAoolyListByUserId(Integer userId);
 
-
+    Integer countOrderApplyByAddressAndUserId(Integer userId, Integer placeId);
 }

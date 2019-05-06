@@ -8,6 +8,7 @@ import cn.stylefeng.guns.modular.system.warpper.PlaceApplyListWrap;
 import cn.stylefeng.guns.modular.system.warpper.PlaceApplyWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
+import com.google.common.base.Objects;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -122,6 +123,13 @@ public class PlaceapplyController extends BaseController {
         if (!m.matches()){
             //throw new Exception("手机号输出错误");
             return new ErrorResponseData("手机号输入错误");
+        }
+        if (Objects.equal(placeapply.getAddress(),null)){
+            return new ErrorResponseData("请输入要申请的快递点");
+        }
+
+        if (placeapplyService.countPlaceAddress(placeapply.getAddress()) >= 1){
+            return new ErrorResponseData("该快递点已存在");
         }
         placeapply.setCreatedate(new Date());
         placeapplyService.insert(placeapply);

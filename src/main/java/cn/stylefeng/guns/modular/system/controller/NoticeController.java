@@ -27,6 +27,7 @@ import cn.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.google.common.base.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -86,8 +88,15 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/hello")
     public String hello() {
-        List<Map<String, Object>> notices = noticeService.list(null);
-        super.setAttr("noticeList", notices);
+        List<Map<String, Object>> list = noticeService.list(null);
+        Iterator it = list.iterator();
+        while (it.hasNext()){
+            Map map = (Map) it.next();
+            if (!Objects.equal(map.get("aim"),ShiroKit.getUser().getId()) && !Objects.equal(map.get("aim"),0)){
+                it.remove();
+            }
+        }
+        super.setAttr("noticeList", super.warpObject(new NoticeWrapper(list)));
         return "/blackboard.html";
     }
 
@@ -98,6 +107,13 @@ public class NoticeController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.noticeService.list(condition);
+        Iterator it = list.iterator();
+        while (it.hasNext()){
+            Map map = (Map) it.next();
+            if (!Objects.equal(map.get("aim"),ShiroKit.getUser().getId()) && !Objects.equal(map.get("aim"),0)){
+                it.remove();
+            }
+        }
         return super.warpObject(new NoticeWrapper(list));
     }
 
@@ -113,6 +129,7 @@ public class NoticeController extends BaseController {
         }
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
+        notice.setAim(0);
         notice.insert();
         return SUCCESS_TIP;
     }

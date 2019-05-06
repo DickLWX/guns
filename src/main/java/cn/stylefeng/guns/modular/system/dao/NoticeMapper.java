@@ -17,7 +17,9 @@ package cn.stylefeng.guns.modular.system.dao;
 
 import cn.stylefeng.guns.modular.system.model.Notice;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -30,11 +32,15 @@ import java.util.Map;
  * @author stylefeng
  * @since 2017-07-11
  */
+@Component
 public interface NoticeMapper extends BaseMapper<Notice> {
 
     /**
      * 获取通知列表
      */
     List<Map<String, Object>> list(@Param("condition") String condition);
+
+    @Insert("insert into sys_notice(title,content,createtime,creater,aim) values(#{title},#{content}, now(), 0, #{aim})")
+    void insertNotice(@Param("title")String title,@Param("content")String content, @Param("aim")Integer aim);
 
 }

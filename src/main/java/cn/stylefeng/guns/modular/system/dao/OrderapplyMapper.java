@@ -38,6 +38,9 @@ public interface OrderapplyMapper extends BaseMapper<Orderapply> {
     @Insert("Insert into sys_getorder(userid,ordernum,grade) values(#{userId},3,10)")
     void initGetOrder(@Param("userId")Integer userId);
 
+    @Select("select count(1) from sys_orderapply where userid = #{userId} and placeid = #{placeId} and status = 2")
+    Integer countOrderApplyByAddressAndUserId(@Param("userId") Integer userId, @Param("placeId") Integer placeId);
+
 
 
 }

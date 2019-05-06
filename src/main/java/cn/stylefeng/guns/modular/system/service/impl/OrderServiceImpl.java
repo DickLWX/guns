@@ -4,6 +4,7 @@ import cn.stylefeng.guns.modular.system.model.Order;
 import cn.stylefeng.guns.modular.system.dao.OrderMapper;
 import cn.stylefeng.guns.modular.system.service.IOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,27 +32,27 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public int selectScore(Integer orderId) {
+    public Integer selectScore(Integer orderId) {
         return this.baseMapper.selectScore(orderId);
     }
 
     @Override
-    public int selectPlaceId(Integer orderId) {
+    public Integer selectPlaceId(Integer orderId) {
         return this.baseMapper.selectPlaceId(orderId);
     }
 
     @Override
-    public int selectTempScore(Integer userId) {
+    public Integer selectTempScore(Integer userId) {
         return this.baseMapper.selectTempScore(userId);
     }
 
     @Override
-    public int selectGrade(Integer userId) {
+    public Integer selectGrade(Integer userId) {
         return this.baseMapper.selectGrade(userId);
     }
 
     @Override
-    public int isHasGetOrder(Integer userId, Integer placeId) {
+    public Integer isHasGetOrder(Integer userId, Integer placeId) {
         return this.baseMapper.isHasGetOrder(userId, placeId);
     }
 
@@ -119,4 +120,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public void updateGetOrderInfo(Integer userId, Integer orderNum, Integer grade) {
         this.baseMapper.updateGetOrderInfo(userId,orderNum,grade);
     }
+
+    @Override
+    public Integer selectOrderUserIdById(Integer orderId) {
+        return this.baseMapper.selectOrderUserIdById(orderId);
+    }
+
+    @Override
+    public void deleteOrder(Integer orderId) {
+        this.baseMapper.deleteOrder(orderId);
+    }
+
 }

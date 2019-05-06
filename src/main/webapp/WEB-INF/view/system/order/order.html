@@ -15,7 +15,9 @@
                             @if(shiro.hasPermission("/order/add")){
                                 <#button name="发布订单" icon="fa-plus" clickFun="Order.openAddOrder()"/>
                             @}
-                            <#button name="接单" icon="fa-remove" clickFun="Order.getOrder()" space="true"/>
+                            @if(shiro.hasPermission("/order/update")){
+                            <#button name="接单" icon="fa-plus" clickFun="Order.getOrder()"/>
+                            @}
                         </div>
                         <#table id="OrderTable"/>
                     </div>

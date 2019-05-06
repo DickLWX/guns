@@ -28,16 +28,16 @@ public interface OrderMapper extends BaseMapper<Order> {
     @Select("select score from sys_order where id = #{orderId}")
     Integer selectScore(@Param("orderId")Integer orderId);
 
-    int selectPlaceId(@Param("orderId")Integer orderId);
+    Integer selectPlaceId(@Param("orderId")Integer orderId);
 
     @Select("select tempscore from sys_userscore where userid = #{userId}")
-    int selectTempScore(@Param("userId")Integer userId);
+    Integer selectTempScore(@Param("userId")Integer userId);
 
     @Select("select grade from sys_getorder where userid = #{userId}")
-    int selectGrade(@Param("userId")Integer userId);
+    Integer selectGrade(@Param("userId")Integer userId);
 
     @Select("select count(*) from sys_orderapply where placeid = #{placeId} and userid = #{userId} and status = 2")
-    int isHasGetOrder(@Param("userId")Integer userId, @Param("placeId")Integer placeId);
+    Integer isHasGetOrder(@Param("userId")Integer userId, @Param("placeId")Integer placeId);
 
     @Update("update sys_order set getid = #{userId}, status = 1 where id = #{orderId}")
     void getOrder(@Param("userId")Integer userId, @Param("orderId")Integer orderId);
@@ -77,5 +77,12 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Update("update sys_getorder set grade = #{grade}, ordernum = #{orderNum} where userid = #{userId}")
     void updateGetOrderInfo(@Param("userId")Integer userId,@Param("orderNum")Integer orderNum, @Param("grade")Integer grade);
+
+    @Select("select userId from sys_order where id = #{orderId}")
+    Integer selectOrderUserIdById(@Param("orderId")Integer orderId);
+
+    @Update("update sys_order set deleteflag = 1 where id = #{orderId}")
+    void deleteOrder(@Param("orderId")Integer orderId);
+
 
 }

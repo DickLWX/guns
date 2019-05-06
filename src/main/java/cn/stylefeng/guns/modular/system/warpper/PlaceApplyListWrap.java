@@ -14,7 +14,7 @@ public class PlaceApplyListWrap extends BaseControllerWrapper {
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        map.put("address", ConstantFactory.me().getPlaceAddress((Integer)map.get("placeid")));
+        //map.put("address", ConstantFactory.me().getPlaceAddress((Integer)map.get("placeid")));
         map.put("statusname", ConstantFactory.me().getPlaceApplyList((Integer)map.get("status")));
 
     }

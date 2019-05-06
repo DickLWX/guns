@@ -148,6 +148,9 @@ public class OrderapplyController extends BaseController {
         orderapply.setDeleteflag(0);
         Integer placeId = placeapplyService.findPlaceIdByAddress(dto.getPlaceaddress());
         if (!Objects.equal(placeId, null)){
+            if (orderapplyService.countOrderApplyByAddressAndUserId(user.getId(),placeId) >= 1){
+                return new ErrorResponseData("您已是该快递点接单人");
+            }
             orderapply.setPlaceid(placeId);
             orderapplyService.insert(orderapply);
         }else{

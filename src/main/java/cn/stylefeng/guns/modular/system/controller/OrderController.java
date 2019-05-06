@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.system.controller;
 
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.util.NoticeUtil;
 import cn.stylefeng.guns.modular.system.dao.OrderMapper;
 import cn.stylefeng.guns.modular.system.service.IPlaceapplyService;
 import cn.stylefeng.guns.modular.system.transfer.OrderDto;
@@ -12,6 +13,7 @@ import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.google.common.base.Objects;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
@@ -132,10 +134,16 @@ public class OrderController extends BaseController {
         Integer orderGrade = orderService.selectOrderGrade(orderId);
         Integer orderCount = orderService.selectOrderNum(userId);
         Integer getOrderCount = orderService.selectGetOrderNum(userId);
+        Integer orderUserId = orderService.selectOrderUserIdById(orderId);
+        if (Objects.equal(grade,null)){
+            return new ErrorResponseData("您不是接单人");
+        }
         if (tempScore - reputation < 0){
             return new ErrorResponseData("当前可用积分不够");
         }
-
+        if (Objects.equal(orderUserId,userId)){
+            return new ErrorResponseData("不能接自己发布的订单");
+        }
         if (grade < orderGrade){
             return new ErrorResponseData("信誉分不够");
         }
@@ -150,6 +158,9 @@ public class OrderController extends BaseController {
         }
         // 判断是否有当前快递点的权限
         orderService.getOrder(userId,orderId);
+
+        orderService.updateUserTempScore(userId,tempScore - reputation);
+        NoticeUtil.InsertNotice("订单已被接收","您的订单已被接取，快去看看吧！",orderUserId);
         // 判断当前是否还有接单数
         return SUCCESS_TIP;
     }
@@ -232,6 +243,23 @@ public class OrderController extends BaseController {
     }
 
     /**
+     * 取消订单
+     */
+    @RequestMapping(value = "/cancel")
+    @ResponseBody
+    @Transactional
+    public Object cancel(@RequestParam Integer orderId) {
+        Order orderReally = orderService.selectById(orderId);
+        if (!Objects.equal(orderReally.getStatus(),0)){
+            return new ErrorResponseData("只有未被接的单才能取消订单");
+        }
+        Integer userTempScore = orderService.selectUserTempScore(orderReally.getUserid());
+        orderService.updateUserTempScore(orderReally.getUserid(), userTempScore + orderReally.getReputation());
+        orderService.deleteOrder(orderId);
+        return SUCCESS_TIP;
+    }
+
+    /**
      * 确认收货
      */
     @RequestMapping(value = "/update")
@@ -242,6 +270,9 @@ public class OrderController extends BaseController {
         ShiroUser user = ShiroKit.getUser();
         Integer orderId = order.getId();
         Order orderReally = orderService.selectById(orderId);
+        if (!Objects.equal(orderReally.getStatus(),1)){
+            return new ErrorResponseData("该笔订单已完成或未被接单");
+        }
 
         Integer userId = user.getId();
         Integer getId = orderReally.getGetid();
@@ -266,8 +297,9 @@ public class OrderController extends BaseController {
             orderService.finishOrder(2,order.getContent(),orderId);
             orderService.updateUserScore(userScore - score, userId);
             orderService.updateUserScore(getScore + score, getId);
-            orderService.updateUserTempScore(getId, getTempScore + score);
+            orderService.updateUserTempScore(getId, getTempScore + score + reputation);
             orderService.updateGetOrderInfo(getId,orderNum,grade + content);
+            NoticeUtil.InsertNotice("订单确认收货","您有一笔订单完成了，快去看看吧！",getId);
         }else {
             if (Objects.equal(flag,0)){
                 orderNum = getOrderNUm(grade + content);
@@ -275,8 +307,9 @@ public class OrderController extends BaseController {
             orderService.finishOrder(3,order.getContent(),orderId);
             orderService.updateUserScore(getScore - reputation, getId);
             orderService.updateUserScore(userScore + reputation, userId);
-            orderService.updateUserTempScore(userId, userTempScore + reputation);
+            orderService.updateUserTempScore(userId, userTempScore + reputation + score);
             orderService.updateGetOrderInfo(getId,orderNum,grade + content);
+            NoticeUtil.InsertNotice("订单确认收货","您有一笔订单超时了，快去看看吧！",getId);
         }
 
         return SUCCESS_TIP;

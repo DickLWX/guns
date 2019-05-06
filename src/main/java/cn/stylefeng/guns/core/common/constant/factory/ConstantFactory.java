@@ -380,6 +380,8 @@ public class ConstantFactory implements IConstantFactory {
             return "完成";
         if (Objects.equals(status, 3))
             return "超时";
+        if (Objects.equals(status, 4))
+            return "过期";
         return null;
     }
 

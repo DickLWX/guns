@@ -2,6 +2,8 @@ package cn.stylefeng.guns.modular.system.controller;
 
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.util.NoticeUtil;
+import cn.stylefeng.guns.core.util.SensitiveWordUtil;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.google.common.base.Objects;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Feedback;
 import cn.stylefeng.guns.modular.system.service.IFeedbackService;
 
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -79,13 +82,18 @@ public class FeedbackController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(Feedback feedback) {
+    public Object add(Feedback feedback) throws IOException {
         ShiroUser user = ShiroKit.getUser();
         feedback.setUserid(user.getId());
         feedback.setCreatedate(new Date());
+        //SensitiveWordUtil.init();
+        String word = SensitiveWordUtil.replaceSensitiveWord(feedback.getContent(), '*');
+        feedback.setContent(word);
         feedbackService.insert(feedback);
+        //NoticeUtil.InsertNotice("意见反馈","意见反馈成功",ShiroKit.getUser().getId());
         return SUCCESS_TIP;
     }
+
 
     /**
      * 删除feedback
@@ -102,11 +110,14 @@ public class FeedbackController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update(Feedback feedback) {
+    public Object update(Feedback feedback) throws IOException {
         ShiroUser user = ShiroKit.getUser();
         Integer userId = user.getId();
         feedback.setAdminId(userId);
         feedback.setReviewdate(new Date());
+       // SensitiveWordUtil.init();
+        String word = SensitiveWordUtil.replaceSensitiveWord(feedback.getReviewcontent(), '*');
+        feedback.setReviewcontent(word);
         feedbackService.updateFeedBack(feedback.getId(),userId,feedback.getReviewcontent());
         return SUCCESS_TIP;
     }

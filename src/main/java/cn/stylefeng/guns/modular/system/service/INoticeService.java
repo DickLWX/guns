@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.service;
 
 import cn.stylefeng.guns.modular.system.model.Notice;
 import com.baomidou.mybatisplus.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -35,4 +36,6 @@ public interface INoticeService extends IService<Notice> {
      * 获取通知列表
      */
     List<Map<String, Object>> list(String condition);
+
+    void insertNotice(String title,String content,Integer aim);
 }

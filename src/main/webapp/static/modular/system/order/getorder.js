@@ -19,6 +19,7 @@ Placeapply.initColumn = function () {
             {title: '快递点', field: 'placename', visible: true, align: 'center', valign: 'middle'},
             {title: '送达地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
             {title: '积分', field: 'score', visible: true, align: 'center', valign: 'middle'},
+            {title: '保证积分', field: 'reputation', visible: true, align: 'center', valign: 'middle'},
             {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle'},
             {title: '评论', field: 'content', visible: true, align: 'center', valign: 'middle'},
             {title: '完成时间', field: 'finishdate', visible: true, align: 'center', valign: 'middle'}

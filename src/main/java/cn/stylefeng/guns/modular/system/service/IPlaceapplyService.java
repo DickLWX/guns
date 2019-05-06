@@ -3,6 +3,7 @@ package cn.stylefeng.guns.modular.system.service;
 import cn.stylefeng.guns.modular.system.model.Placeapply;
 import com.baomidou.mybatisplus.service.IService;
 import io.swagger.models.auth.In;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -34,4 +35,8 @@ public interface IPlaceapplyService extends IService<Placeapply> {
     Integer selectPlaceIdByUserId(Integer userId);
 
     List<Map<String,Object>> getPlaceApplyList(Integer userId);
+
+    Integer selectPlaceId(String address);
+
+    Integer countPlaceAddress(String address);
 }

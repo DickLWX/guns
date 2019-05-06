@@ -47,6 +47,8 @@ public class Notice extends Model<Notice> {
      */
     private Integer creater;
 
+    private Integer aim;
+
 
     public Integer getId() {
         return id;
@@ -94,6 +96,14 @@ public class Notice extends Model<Notice> {
 
     public void setCreater(Integer creater) {
         this.creater = creater;
+    }
+
+    public Integer getAim() {
+        return aim;
+    }
+
+    public void setAim(Integer aim) {
+        this.aim = aim;
     }
 
     @Override

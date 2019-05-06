@@ -48,7 +48,7 @@ Order.openAddOrder = function () {
     var index = layer.open({
         type: 2,
         title: '添加订单',
-        area: ['800px', '420px'], //宽高
+        area: ['1100px', '700px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/order/order_add'
