@@ -15,8 +15,6 @@ import java.util.Map;
  * 订单表 Mapper 接口
  * </p>
  *
- * @author dick
- * @since 2019-02-03
  */
 public interface OrderMapper extends BaseMapper<Order> {
 

@@ -15,8 +15,6 @@ import java.util.Map;
  * 申请成为接单人 Mapper 接口
  * </p>
  *
- * @author stylefeng
- * @since 2019-02-14
  */
 public interface OrderapplyMapper extends BaseMapper<Orderapply> {
 

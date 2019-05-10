@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 字典表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_dict")
 public class Dict extends Model<Dict> {

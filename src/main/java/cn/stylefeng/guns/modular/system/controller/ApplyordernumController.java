@@ -23,8 +23,6 @@ import java.util.regex.Pattern;
 /**
  * 接单数申请控制器
  *
- * @author fengshuonan
- * @Date 2019-03-26 21:26:57
  */
 @Controller
 @RequestMapping("/applyordernum")

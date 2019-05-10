@@ -18,8 +18,6 @@ package cn.stylefeng.guns.core.common.constant;
 /**
  * jwt相关配置
  *
- * @author fengshuonan
- * @date 2017-08-23 9:23
  */
 public interface JwtConstants {
 

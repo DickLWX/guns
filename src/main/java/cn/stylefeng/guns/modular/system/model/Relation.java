@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 角色和菜单关联表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_relation")
 public class Relation extends Model<Relation> {

@@ -33,8 +33,6 @@ import java.util.Map;
 /**
  * 角色服务
  *
- * @author fengshuonan
- * @Date 2018/10/15 下午11:40
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {

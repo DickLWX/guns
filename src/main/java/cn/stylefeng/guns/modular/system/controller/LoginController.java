@@ -57,8 +57,6 @@ import static cn.stylefeng.roses.core.util.HttpContext.getRequest;
 /**
  * 登录控制器
  *
- * @author fengshuonan
- * @Date 2017年1月10日 下午8:25:24
  */
 @Controller
 public class LoginController extends BaseController {

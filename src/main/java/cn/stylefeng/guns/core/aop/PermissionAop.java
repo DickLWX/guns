@@ -32,8 +32,6 @@ import java.lang.reflect.Method;
 /**
  * 权限检查的aop
  *
- * @author fengshuonan
- * @date 2017-07-13 21:05
  */
 @Aspect
 @Component

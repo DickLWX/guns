@@ -13,8 +13,6 @@ import java.util.Date;
  * 通知表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_notice")
 public class Notice extends Model<Notice> {

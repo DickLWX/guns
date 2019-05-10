@@ -14,8 +14,6 @@ import java.util.Map;
  * 用户反馈表 Mapper 接口
  * </p>
  *
- * @author stylefeng
- * @since 2019-03-24
  */
 public interface FeedbackMapper extends BaseMapper<Feedback> {
 

@@ -20,8 +20,6 @@ import cn.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 /**
  * 字典map
  *
- * @author fengshuonan
- * @date 2017-05-06 15:43
  */
 public class DictMap extends AbstractDictMap {
 

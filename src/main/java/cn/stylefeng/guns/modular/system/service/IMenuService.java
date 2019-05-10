@@ -27,8 +27,6 @@ import java.util.Map;
 /**
  * 菜单服务
  *
- * @author fengshuonan
- * @date 2017-05-05 22:19
  */
 public interface IMenuService extends IService<Menu> {
 

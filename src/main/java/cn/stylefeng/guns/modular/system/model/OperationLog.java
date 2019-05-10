@@ -13,8 +13,6 @@ import java.util.Date;
  * 操作日志
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_operation_log")
 public class OperationLog extends Model<OperationLog> {

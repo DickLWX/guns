@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 部门表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_dept")
 public class Dept extends Model<Dept> {

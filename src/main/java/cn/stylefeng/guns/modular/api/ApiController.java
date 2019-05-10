@@ -38,8 +38,6 @@ import java.util.HashMap;
 /**
  * 接口控制器提供
  *
- * @author stylefeng
- * @Date 2018/7/20 23:39
  */
 @RestController
 @RequestMapping("/gunsApi")

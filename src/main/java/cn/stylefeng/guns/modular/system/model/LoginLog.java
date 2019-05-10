@@ -12,9 +12,7 @@ import java.util.Date;
  * <p>
  * 登录记录
  * </p>
- *
- * @author stylefeng
- * @since 2017-07-11
+
  */
 @TableName("sys_login_log")
 public class LoginLog extends Model<LoginLog> {

@@ -33,8 +33,6 @@ import java.util.Map;
 /**
  * 菜单服务
  *
- * @author fengshuonan
- * @date 2017-05-05 22:20
  */
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {

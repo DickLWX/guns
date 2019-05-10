@@ -14,8 +14,6 @@ import java.util.Map;
  * 接单人申请接单数表 服务类
  * </p>
  *
- * @author stylefeng
- * @since 2019-03-26
  */
 public interface IApplyordernumService extends IService<Applyordernum> {
 

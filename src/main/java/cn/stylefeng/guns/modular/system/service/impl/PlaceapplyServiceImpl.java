@@ -19,8 +19,6 @@ import java.util.Map;
  * 快递点申请表 服务实现类
  * </p>
  *
- * @author stylefeng
- * @since 2018-11-12
  */
 @Service
 public class PlaceapplyServiceImpl extends ServiceImpl<PlaceapplyMapper, Placeapply> implements IPlaceapplyService {

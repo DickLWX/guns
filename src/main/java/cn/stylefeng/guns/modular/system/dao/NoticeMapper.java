@@ -29,8 +29,6 @@ import java.util.Map;
  * 通知表 Mapper 接口
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @Component
 public interface NoticeMapper extends BaseMapper<Notice> {

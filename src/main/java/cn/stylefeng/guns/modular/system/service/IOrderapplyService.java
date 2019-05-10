@@ -13,8 +13,6 @@ import java.util.Map;
  * 申请成为接单人 服务类
  * </p>
  *
- * @author stylefeng
- * @since 2019-02-14
  */
 public interface IOrderapplyService extends IService<Orderapply> {
 

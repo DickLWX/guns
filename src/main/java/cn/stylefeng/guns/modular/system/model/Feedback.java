@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 用户反馈表
  * </p>
  *
- * @author stylefeng
- * @since 2019-03-24
  */
 @TableName("sys_feedback")
 public class Feedback extends Model<Feedback> {

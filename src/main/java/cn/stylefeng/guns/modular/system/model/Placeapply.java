@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 快递点申请表
  * </p>
  *
- * @author stylefeng
- * @since 2018-11-12
  */
 @TableName("sys_placeapply")
 public class Placeapply extends Model<Placeapply> {

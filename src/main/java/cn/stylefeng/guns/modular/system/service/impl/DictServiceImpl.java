@@ -35,8 +35,6 @@ import static cn.stylefeng.guns.core.common.constant.factory.MutiStrFactory.*;
 /**
  * 字典服务
  *
- * @author fengshuonan
- * @Date 2018/10/15 下午11:39
  */
 @Service
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {

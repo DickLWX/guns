@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 申请成为接单人
  * </p>
  *
- * @author stylefeng
- * @since 2019-02-14
  */
 @TableName("sys_orderapply")
 public class Orderapply extends Model<Orderapply> {

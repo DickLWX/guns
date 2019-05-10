@@ -26,8 +26,6 @@ import java.util.Map;
 /**
  * 组合字符串生产者
  *
- * @author fengshuonan
- * @date 2017-04-27 16:42
  */
 public class MutiStrFactory {
 

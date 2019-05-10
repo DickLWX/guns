@@ -29,8 +29,6 @@ import java.util.regex.Pattern;
 /**
  * 快递点申请控制器
  *
- * @author fengshuonan
- * @Date 2018-11-12 21:32:42
  */
 @Controller
 @RequestMapping("/placeapply")

@@ -32,8 +32,6 @@ import java.util.Map;
 /**
  * 部门服务
  *
- * @author fengshuonan
- * @Date 2018/10/15 下午11:39
  */
 @Service
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {

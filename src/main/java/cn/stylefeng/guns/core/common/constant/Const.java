@@ -18,8 +18,6 @@ package cn.stylefeng.guns.core.common.constant;
 /**
  * 系统常量
  *
- * @author fengshuonan
- * @date 2017年2月12日 下午9:42:53
  */
 public interface Const {
 

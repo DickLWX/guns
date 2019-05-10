@@ -14,8 +14,6 @@ import java.util.Map;
  * 用户反馈表 服务实现类
  * </p>
  *
- * @author stylefeng
- * @since 2019-03-24
  */
 @Service
 public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> implements IFeedbackService {

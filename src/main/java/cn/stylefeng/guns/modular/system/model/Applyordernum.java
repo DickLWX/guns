@@ -12,8 +12,6 @@ import java.io.Serializable;
  * 接单人申请接单数表
  * </p>
  *
- * @author stylefeng
- * @since 2019-03-26
  */
 @TableName("sys_applyordernum")
 public class Applyordernum extends Model<Applyordernum> {

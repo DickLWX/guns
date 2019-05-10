@@ -13,8 +13,6 @@ import java.io.Serializable;
  * 菜单表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_menu")
 public class Menu extends Model<Menu> {

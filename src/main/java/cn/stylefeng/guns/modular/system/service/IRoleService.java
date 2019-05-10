@@ -26,8 +26,6 @@ import java.util.Map;
 /**
  * 角色相关业务
  *
- * @author fengshuonan
- * @Date 2017年1月10日 下午9:11:57
  */
 public interface IRoleService extends IService<Role> {
 

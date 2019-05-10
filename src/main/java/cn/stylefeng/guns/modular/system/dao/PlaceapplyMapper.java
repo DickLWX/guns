@@ -15,8 +15,6 @@ import java.util.Map;
  * 快递点申请表 Mapper 接口
  * </p>
  *
- * @author stylefeng
- * @since 2018-11-12
  */
 public interface PlaceapplyMapper extends BaseMapper<Placeapply> {
 

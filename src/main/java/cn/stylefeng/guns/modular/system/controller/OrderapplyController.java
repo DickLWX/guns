@@ -31,8 +31,6 @@ import java.util.regex.Pattern;
 /**
  * 接单人申请控制器
  *
- * @author fengshuonan
- * @Date 2019-02-14 09:36:04
  */
 @Controller
 @RequestMapping("/orderapply")

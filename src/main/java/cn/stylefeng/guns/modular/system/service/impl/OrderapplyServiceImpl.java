@@ -18,8 +18,6 @@ import java.util.Map;
  * 申请成为接单人 服务实现类
  * </p>
  *
- * @author stylefeng
- * @since 2019-02-14
  */
 @Service
 public class OrderapplyServiceImpl extends ServiceImpl<OrderapplyMapper, Orderapply> implements IOrderapplyService {

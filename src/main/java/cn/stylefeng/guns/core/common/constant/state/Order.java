@@ -18,8 +18,6 @@ package cn.stylefeng.guns.core.common.constant.state;
 /**
  * 数据库排序
  *
- * @author fengshuonan
- * @Date 2017年5月31日20:48:41
  */
 public enum Order {
 

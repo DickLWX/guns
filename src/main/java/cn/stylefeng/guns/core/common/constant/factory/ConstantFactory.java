@@ -40,8 +40,6 @@ import java.util.Objects;
 /**
  * 常量的生产工厂
  *
- * @author fengshuonan
- * @date 2017年2月13日 下午10:55:21
  */
 @Component
 @DependsOn("springContextHolder")

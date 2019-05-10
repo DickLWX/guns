@@ -30,8 +30,6 @@ import java.util.Map;
  * 操作日志 服务实现类
  * </p>
  *
- * @author stylefeng123
- * @since 2018-02-22
  */
 @Service
 public class OperationLogServiceImpl extends ServiceImpl<OperationLogMapper, OperationLog> implements IOperationLogService {

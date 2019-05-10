@@ -14,8 +14,6 @@ import java.util.Date;
  * 管理员表
  * </p>
  *
- * @author stylefeng
- * @since 2017-07-11
  */
 @TableName("sys_user")
 public class User extends Model<User> {

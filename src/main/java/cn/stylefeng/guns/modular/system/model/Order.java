@@ -14,8 +14,6 @@ import java.io.Serializable;
  * 订单表
  * </p>
  *
- * @author dick
- * @since 2019-02-03
  */
 @TableName("sys_order")
 public class Order extends Model<Order> {

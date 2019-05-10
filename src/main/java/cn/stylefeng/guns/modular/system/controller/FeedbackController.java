@@ -23,8 +23,6 @@ import java.util.Date;
 /**
  * feedback控制器
  *
- * @author fengshuonan
- * @Date 2019-03-24 18:59:22
  */
 @Controller
 @RequestMapping("/feedback")

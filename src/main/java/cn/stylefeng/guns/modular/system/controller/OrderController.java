@@ -34,8 +34,6 @@ import java.util.regex.Pattern;
 /**
  * 订单控制器
  *
- * @author fengshuonan
- * @Date 2019-02-03 14:29:52
  */
 @Controller
 @RequestMapping("/order")
